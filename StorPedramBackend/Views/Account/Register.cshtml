@@ -1,0 +1,96 @@
+﻿@model RegisterUserViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_AccountLayout1.cshtml";
+}
+
+
+<div class="c-account_box-headline">ثبت‌ نام در فروشگاه</div>
+<div class="c-account_box-content">
+    <form asp-action="Register" class="c-form_account">
+        <div class="c-form_account-message">اگر قبلا  ثبت ‌نام کرده‌اید، نیاز به ثبت‌نام مجدد با شماره همراه ندارید</div>
+        <div class="c-form_account-title">  یا ایمیل شماره موبایل</div>
+        <div class="c-form_account-row">
+            <div class="c-form_account-col">
+                <div asp-validation-summary="ModelOnly" style="color:red"></div>
+                <label class="c-form_account-label c-form_account-label_username">
+                    <input asp-for="Phone" class="c-form_account-input" placeholder=" شماره موبایل خود را وارد نمایید">
+                    <span asp-validation-for="Phone" class="field-error"></span>
+
+                </label>
+            </div>
+        </div>
+        <div class="c-form_account-title c-form_account-title_passowrd">کلمه عبور   </div>
+        <div class="c-form_account-row">
+            <div class="c-form_account-col">
+                <label class="c-form_account-label c-form_account-label_password">
+                    <input asp-for="Password" class="c-form_account-input" placeholder="کلمه عبور خود را وارد نمایید">
+                    <span asp-validation-for="Password" class="field-error"></span>
+                </label>
+            </div>
+        </div>
+        <div class="c-form_account-captcha">
+            <div class="g-recaptcha" data-sitekey="6Ld_9agZAAAAAHfpoXtRYAGY9vovb_q8C7_S4xlu"></div>
+            <span id="recaptchaerror" style="color:red"></span>
+        </div>
+        <div class="c-form_account-remember">
+            <label class="c-form_account-label_remember">
+                <span asp-validation-for="Terms" class="field-error"></span>
+                <input asp-for="Terms" id="remember">
+                <span class="c-checkbox_check"></span>
+            </label>
+            <label for="remember">
+
+                <a href="#" class="c-form_account-link" style="font-size: unset">شرایط و قوانین</a>
+
+                استفاده از سرویس های  را مطالعه نموده و با کلیه موارد آن موافقم.
+            </label>
+        </div>
+
+        <div class="c-form_account-row">
+            <div class="c-form_account-col">
+                <button type="submit" class="c-form_account-btn c-form_account-btn_register">ثبت ‌نام </button>
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
+<div class="c-account_box-footer">
+    <span>قبلا  ثبت‌ نام کرده‌اید؟</span>
+    <a class="c-form_account-link" asp-action="Login">وارد شویــد </a>
+</div>
+
+@section script{
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+    <script>
+
+            $("form").submit(function(event) {
+
+       var recaptcha = $("#g-recaptcha-response").val();
+       if (recaptcha === "") {
+                event.preventDefault();
+            $("#recaptchaerror").text("لطفا احراز هویت را انجام دهید")
+        }
+
+      $.validator.methods.range;
+			$.validator.methods.range = function(value, element, param) {
+				if(element.type === 'checkbox') {
+					// if it's a checkbox return true if it is checked
+					return element.checked;
+				} else {
+					// otherwise run the default validation function
+					return defaultRangeValidator.call(this, value, element, param);
+				}
+			}
+
+     });
+    </script>
+
+}
+
+

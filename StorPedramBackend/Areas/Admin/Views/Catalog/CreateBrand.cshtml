@@ -1,0 +1,57 @@
+﻿@model CorService.ViewModels.Brand.BrandAddViewModel
+@{
+    ViewData["Title"] = "CreateBrand";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">ایجاد برند جدید </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CreateBrand" enctype="multipart/form-data">
+                    <div class="box-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="FaTitle" class="control-label"></label>
+                            <input asp-for="FaTitle" class="form-control" />
+                            <span asp-validation-for="FaTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EnTitle" class="control-label"></label>
+                            <input asp-for="EnTitle" class="form-control" />
+                            <span asp-validation-for="EnTitle" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Image" class="control-label"></label>
+                            <input asp-for="Image" type="file" accept="image/*" class="form-control" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Deccription" class="control-label"></label>
+                            <textarea asp-for="Deccription" type="file" accept="image/*" class="form-control">
+
+</textarea>
+                            <span asp-validation-for="Deccription" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="hidden" asp-for="IsDelete" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="ذخیره" class="btn btn-success" />
+                            <a asp-action="ProductListContainer" class="btn btn-danger">انصراف</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

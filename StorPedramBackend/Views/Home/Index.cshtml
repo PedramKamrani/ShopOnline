@@ -1,0 +1,150 @@
+﻿@model IEnumerable<CorService.ViewModels.Product.ProductDetailUserViewModel>
+@section style{
+    <link rel="stylesheet" type="text/css" href="/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
+
+}
+@{
+    ViewData["Title"] = "فروشگاه اینترنتی";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<main>
+    <article class="container">
+        <div class="c-sliders">
+            <div class="c-top_banner">
+                <div class="c-top_banner_img"></div>
+            </div>
+            <div class="c-sliders_row">
+               
+                <div class="c-sliders_left">
+
+                   @await Component.InvokeAsync("SliderComponent");
+
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div class="c-top_swiper">
+            <div class="c-top_swiper-right">
+                <section class="c-swiper">
+                    <div class="c-swiper_headline">
+                        <span>محصولات ما</span>
+                    </div>
+                   
+                        <div class="c-swiper_content js-swiper_content" data-count-lg="3.5" data-count-xl="3.75" data-count-xxl="5">
+                            <div class="c-swiper_container" id="swiper1">
+                                <div class=" c-swiper_box swiper-wrapper js-swiper_box swiper-wrapper">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                                            <a class="c-swiper_url" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.ProductId">
+
+                                                <span class="c-swiper_img">
+                                                    <img src="~/img/product/@item.ImgName">
+                                                </span>
+                                                <span class="c-swiper_title">
+                                                    @item.FaTitle
+                                                </span>
+
+                                                <span class="c-swiper_price">
+                                                    <span class="c-swiper_price-value">
+                                                        @item.price
+                                                        <span>تومان</span>
+                                                    </span>
+                                                </span>
+                                                <span class="c-swiper_Text" style="text-align:center">
+                                                    <span>جزئیات محصول</span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="c-swiper_btn-next js-swiper_btn-next"></div>
+                                <div class="c-swiper_btn-prev js-swiper_btn-prev"></div>
+                            </div>
+                        </div>
+                    
+                </section>
+            </div>
+        </div>
+
+      
+    </article>
+</main>
+
+@section script{
+    <script src="~/js/swiper.min.js"></script>
+    <script>
+
+        $('.js-discount_price').persiaNumber();
+        var mySwiper = new Swiper('.js-main_slider', {
+            // Optional parameters
+            effect: "fade",
+            loop: true,
+
+            autoplay: {
+                delay: 5000,
+            },
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.js-slider_next',
+                prevEl: '.js-slider_prev',
+            },
+            pagination: {
+                el: '.c-slider_dots',
+                type: 'bullets',
+                clickable: true
+            },
+
+
+        })
+
+        mainswiper()
+
+        var Swiper1 = new Swiper('#swiper1', {
+            slidesPerView: 2,
+
+            breakpointsInverse: true,
+            breakpoints: {
+                // when window width is >= 320px
+                1680: {
+                    slidesPerView: 5,
+
+                },
+                // when window width is >= 480px
+                1368: {
+                    slidesPerView: 3.75,
+
+                },
+                // when window width is >= 640px
+                1008: {
+                    slidesPerView: 3.5,
+
+                }
+            },
+            // If we need pagination
+
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.js-swiper_btn-next',
+                prevEl: '.js-swiper_btn-prev',
+            },
+
+
+
+        })
+
+
+    </script>
+}

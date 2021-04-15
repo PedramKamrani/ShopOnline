@@ -1,0 +1,2793 @@
+﻿@model DataLayer.Entites.Brand.Brand
+@{
+    ViewData["Title"] = "Brand";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+@section style{
+    <link rel="stylesheet" type="text/css" href="/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/nouislider.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/remodal.css">
+    <link rel="stylesheet" type="text/css" href="/css/remodal-default-theme.css">
+}
+@await Component.InvokeAsync("SliderComponent");
+<main>
+    <div class="container">
+        <div class="c-search_page-container">
+            <div class="c-search_page-right js-search_page-right">
+                <div class="js-search_page-right_content">
+
+                    <div class="c-brand_profile">
+                        <div class="c-brand_profile-header">
+                            <div class="c-brand_profile-avatar">
+                                <div class="c-brand_profile-avatar_img" style="background-image:url(/img/brand/@Model.ImgName)"></div>
+                            </div>
+                        </div>
+                        <div class="c-brand_profile-details">
+                            <div class="c-brand_profile-name">@Model.FaTitle </div>
+                            <div class="c-brand_profile-link">
+                                <div class="c-brand_profile-share_btn js-open_share"></div>
+                                <span class="c-brand_profile-url js-open_share">https://www.Store.com/brand/@Model.EnTitle/ </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @await Component.InvokeAsync("ShowCategoryForBrandComponent", Model.BrandId)
+
+                    <div class="c-box">
+                        <div class="c-filter c-box_switcher">
+                            <label class="c-statusswitcher">
+                                <input type="checkbox">
+                                <span class="c-statusswitcher_slider">
+                                    <span class="c-statusswitcher_slider-toggle"></span>
+                                </span>
+                            </label>
+                            فقط کالاهای موجود
+                        </div>
+                    </div>
+
+
+
+                    <div class="c-box">
+                        <div class="c-box_header c-box_toggleable js-box_toggleable is-hidden">محدوده قیمت مورد نظر</div>
+                        <div class="c-filter">
+                            <div class="c-box_filter-slider">
+                                <div class="c-range_slider"></div>
+                            </div>
+
+                            <ul class="c-filter_range">
+                                <li data-label="از" data-currency="تومان">
+                                    <input type="text" class="js-slider_range-from" data-range="0" value="0" disabled="disabled">
+                                </li>
+
+                                <li data-label="تا" data-currency="تومان">
+                                    <input type="text" class="js-slider_range-to" data-range="5450000" value="5450000" disabled="disabled">
+                                </li>
+                            </ul>
+
+                            <div class="c-filter_action">
+                                <button class="c-filter_price-btn  js-filter_price-btn disabled">اعمال محدوده قیمت</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="c-search_page-left js-search_page-left">
+                <nav>
+                    <ul class="c-breadcrumb">
+                        <li><a href="#"><span>فروشگاه اینترنتی دیجی‌کالا</span></a></li>
+                        <li><a href="#"><span>کالای دیجیتال</span></a></li>
+                        <li><span>کالای دیجیتال</span></li>
+                    </ul>
+                </nav>
+
+                <div>
+                    <article class="c-search_page-content">
+                        <div class="c-search_page-list js-search_page-list">
+                            <div class="c-listing_counter">۱,۸۵۰ کالا</div>
+                            <div class="c-listing_header">
+                                <ul class="c-listing_sort" data-label="مرتب‌سازی بر اساس :">
+                                    <li><a href="#" class="is-active">محبوب‌ترین</a></li>
+                                    <li><a href="#">جدیدترین</a></li>
+                                    <li><a href="#">پرفروش‌ترین</a></li>
+                                    <li><a href="#">ارزان‌ترین</a></li>
+                                    <li><a href="#">گران‌ترین</a></li>
+                                    <li><a href="#">پربازدیدترین</a></li>
+                                </ul>
+
+                                <ul class="c-listing_type-list">
+                                    <li>
+                                        <button type="button" class="js-listing-type is-active" data-type="gallery"></button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="js-listing-type" data-type="list"></button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <ul class="c-listing_items">
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/1.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/2.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <div class="c-product_box-img_discount"></div>
+                                            <img src="img/search/3.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                    <div class="c-product_box-title-en">
+                                                        Silicon Power S100 10000mAh Power Bank
+                                                    </div>
+                                                    <ul class="c-product_box-color">
+                                                        <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                        <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <del>۲۴۰,۰۰۰</del>
+                                                    <div class="c-product_box-price_discount-value">
+                                                        <span>٪۱۶</span>
+                                                    </div>
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+
+                                                <div class="c-product_box-counter js-product_box-counter" data-nowdate="2018-10-10T12:35:20.000Z" data-discountdate="2018-10-10T12:35:25.000Z"></div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="c-product_box-discount_banner"><span><span>٪۲۵</span><br><span>تخفیف</span></span></div> -->
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/4.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/5.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/6.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/7.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/8.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/1.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/2.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <div class="c-product_box-img_discount"></div>
+                                            <img src="img/search/3.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                    <div class="c-product_box-title-en">
+                                                        Silicon Power S100 10000mAh Power Bank
+                                                    </div>
+                                                    <ul class="c-product_box-color">
+                                                        <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                        <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                        <del>۲۴۰,۰۰۰</del>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+
+                                                <div class="c-product_box-counter js-product_box-counter" data-nowdate="2018-10-10T12:35:20.000Z" data-discountdate="2018-10-10T12:35:25.000Z"></div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="c-product_box-discount_banner"><span><span>٪۲۵</span><br><span>تخفیف</span></span></div>
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/4.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/5.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/6.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/7.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/8.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/1.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/2.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <div class="c-product_box-img_discount"></div>
+                                            <img src="img/search/3.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                    <div class="c-product_box-title-en">
+                                                        Silicon Power S100 10000mAh Power Bank
+                                                    </div>
+                                                    <ul class="c-product_box-color">
+                                                        <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                        <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                        <del>۲۴۰,۰۰۰</del>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+
+                                                <div class="c-product_box-counter js-product_box-counter" data-nowdate="2018-10-10T12:35:20.000Z" data-discountdate="2018-10-10T12:35:25.000Z"></div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="c-product_box-discount_banner"><span><span>٪۲۵</span><br><span>تخفیف</span></span></div>
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/4.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/5.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/6.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/7.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/8.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/1.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/2.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <div class="c-product_box-img_discount"></div>
+                                            <img src="img/search/3.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                    <div class="c-product_box-title-en">
+                                                        Silicon Power S100 10000mAh Power Bank
+                                                    </div>
+                                                    <ul class="c-product_box-color">
+                                                        <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                        <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                        <del>۲۴۰,۰۰۰</del>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+
+                                                <div class="c-product_box-counter js-product_box-counter" data-nowdate="2018-10-10T12:35:20.000Z" data-discountdate="2018-10-10T12:35:25.000Z"></div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="c-product_box-discount_banner"><span><span>٪۲۵</span><br><span>تخفیف</span></span></div>
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/4.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/5.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/6.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/7.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/8.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/1.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/2.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <div class="c-product_box-img_discount"></div>
+                                            <img src="img/search/3.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                    <div class="c-product_box-title-en">
+                                                        Silicon Power S100 10000mAh Power Bank
+                                                    </div>
+                                                    <ul class="c-product_box-color">
+                                                        <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                        <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                        <del>۲۴۰,۰۰۰</del>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+
+                                                <div class="c-product_box-counter js-product_box-counter" data-nowdate="2018-10-10T12:35:20.000Z" data-discountdate="2018-10-10T12:35:25.000Z"></div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="c-product_box-discount_banner"><span><span>٪۲۵</span><br><span>تخفیف</span></span></div>
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="c-product_box">
+                                        <a class="c-product_box-img" href="#">
+                                            <img src="img/search/4.jpg" alt="شارژ همراه">
+                                        </a>
+
+                                        <div class="c-product_box-content">
+                                            <div>
+                                                <div class="c-product_box-title">
+                                                    <a href="#">شارژر همراه سیلیکون پاور مدل S100 ظرفیت 10000 میلی آمپر ساعت</a>
+                                                </div>
+
+                                                <div class="c-product_box-title-en">
+                                                    Silicon Power S100 10000mAh Power Bank
+                                                </div>
+
+                                                <ul class="c-product_box-color" data-title="رنگ ها:">
+                                                    <li><span class="c-product_box-color_item" style="background-color:black"></span></li>
+                                                    <li><span class="c-product_box-color_item" style="background-color:white"></span></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="c-product_box-row_price">
+                                                <div class="c-product_box-price">
+                                                    <div class="c-product_box-price_value">
+                                                        ۱۹۵,۰۰۰ <span class="c-product_box-price_currency">تومان</span>
+                                                    </div>
+                                                </div>
+                                                <label class="c-product_box-compare-checkbox">
+                                                    <input type="checkbox"><span></span>
+                                                    مقایسه
+                                                </label>
+                                            </div>
+
+                                            <div class="c-product_box-tags">
+                                                <div class="c-product_box-rate">
+
+                                                </div>
+
+                                                <ul class="c-product_box-seller c-product_box-seller-item">
+                                                    <li class="c-product_box-seller_name">برونکا</li>
+                                                    <li class="c-product_box-seller_guarantee"> گارانتی 12 ماهه داده پردازی متین </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="c-product_box-seller">
+                                            <span class="c-product_box-seller_details">
+                                                <span class="c-product_box-seller_details-label">فروشنده:</span>
+                                                میلاد مارکت
+                                            </span>
+                                        </div>
+
+                                        <div class="c-product_box-prop">
+                                            <span>ویژگی‌ها</span>
+                                            <ul>
+                                                <li>کلاس وزنی: معمولی|200 تا 400 گرم</li>
+                                                <li>شدت جریان خروجی: 2.1 آمپر</li>
+                                                <li>تعداد درگاه خروجی: 2 عدد</li>
+                                                <li>محدوده ظرفیت: 5 تا 10 هزار میلی‌آمپر‌ساعت</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+
+
+
+                            </ul>
+
+                            <div class="c-pager">
+                                <ul class="c-pager_items">
+                                    <li>
+                                        <a class="c-pager_item is-active">۱</a>
+                                    </li>
+                                    <li>
+                                        <a class="c-pager_item">۲</a>
+                                    </li>
+                                    <li>
+                                        <a class="c-pager_item">۳</a>
+                                    </li>
+                                    <li>
+                                        <a class="c-pager_item">۴</a>
+                                    </li>
+                                    <li>
+                                        <a class="c-pager_item">۵</a>
+                                    </li>
+                                    <line class="c-pager_items-line"></line>
+                                    <li>
+                                        <a class="c-pager_last"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+
+
+        <section class="c-swiper">
+            <div class="c-swiper_headline">
+                <span>شوینده ظروف</span>
+            </div>
+
+            <div class="c-swiper_content js-swiper_content" data-count-lg="4" data-count-xl="5" data-count-xxl="6">
+                <div class="c-swiper_container">
+                    <div class=" c-swiper_box swiper-wrapper js-swiper_box">
+                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                            <a class="c-swiper_url" href="#">
+                                <span class="c-swiper_img">
+                                    <img src="img/swiper/4/1.jpg" alt="کارت حافظه">
+                                </span>
+                                <span class="c-swiper_title">
+                                    کارت حافظه microSDHC سن دیسک کلاس 4 حافظه 8 گیگابا...
+                                </span>
+
+                                <span class="c-swiper_price">
+                                    <span class="c-swiper_price-value">
+                                        ۴۹۹۰۰
+                                        <span>تومان</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                            <a class="c-swiper_url" href="#">
+                                <span class="c-swiper_img">
+                                    <img src="img/swiper/4/2.jpg">
+                                </span>
+                                <span class="c-swiper_title">
+                                    کارت حافظه microSDHC سن دیسک کلاس 4 حافظه 8 گیگابا...
+                                </span>
+
+                                <span class="c-swiper_price">
+                                    <span class="c-swiper_price-value">
+                                        ۴۹۹۰۰
+                                        <span>تومان</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                            <a class="c-swiper_url" href="#">
+                                <span class="c-swiper_img">
+                                    <img src="img/swiper/4/3.jpg">
+                                </span>
+                                <span class="c-swiper_title">
+                                    کارت حافظه microSDHC سن دیسک کلاس 4 حافظه 8 گیگابا...
+                                </span>
+
+                                <span class="c-swiper_price">
+                                    <span class="c-swiper_price-value">
+                                        ۴۹۹۰۰
+                                        <span>تومان</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                            <a class="c-swiper_url" href="#">
+                                <span class="c-swiper_img">
+                                    <img src="img/swiper/4/4.jpg">
+                                </span>
+                                <span class="c-swiper_title">
+                                    کارت حافظه microSDHC سن دیسک کلاس 4 حافظه 8 گیگابا...
+                                </span>
+
+                                <span class="c-swiper_price">
+                                    <span class="c-swiper_price-value">
+                                        ۴۹۹۰۰
+                                        <span>تومان</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                            <a class="c-swiper_url" href="#">
+                                <span class="c-swiper_img">
+                                    <img src="img/swiper/2/5.jpg">
+                                </span>
+                                <span class="c-swiper_title">
+                                    کارت حافظه microSDHC سن دیسک کلاس 4 حافظه 8 گیگابا...
+                                </span>
+
+                                <span class="c-swiper_price">
+                                    <span class="c-swiper_price-value">
+                                        ۴۹۹۰۰
+                                        <span>تومان</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                            <a class="c-swiper_url" href="#">
+                                <span class="c-swiper_img">
+                                    <img src="img/swiper/2/6.jpg">
+                                </span>
+                                <span class="c-swiper_title">
+                                    کارت حافظه microSDHC سن دیسک کلاس 4 حافظه 8 گیگابا...
+                                </span>
+
+                                <span class="c-swiper_price">
+                                    <span class="c-swiper_price-value">
+                                        ۴۹۹۰۰
+                                        <span>تومان</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                            <a class="c-swiper_url" href="#">
+                                <span class="c-swiper_img">
+                                    <img src="img/swiper/digital/7.jpg">
+                                </span>
+                                <span class="c-swiper_title">
+                                    کارت حافظه microSDHC سن دیسک کلاس 4 حافظه 8 گیگابا...
+                                </span>
+
+                                <span class="c-swiper_price">
+                                    <span class="c-swiper_price-value">
+                                        ۴۹۹۰۰
+                                        <span>تومان</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                            <a class="c-swiper_url" href="#">
+                                <span class="c-swiper_img">
+                                    <img src="img/swiper/digital/8.jpg">
+                                </span>
+                                <span class="c-swiper_title">
+                                    کارت حافظه microSDHC سن دیسک کلاس 4 حافظه 8 گیگابا...
+                                </span>
+
+                                <span class="c-swiper_price">
+                                    <span class="c-swiper_price-value">
+                                        ۴۹۹۰۰
+                                        <span>تومان</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="c-swiper_slide swiper-slide" style="width:298.85px">
+                            <a class="c-swiper_url" href="#">
+                                <span class="c-swiper_img">
+                                    <img src="img/swiper/digital/9.jpg">
+                                </span>
+                                <span class="c-swiper_title">
+                                    کارت حافظه microSDHC سن دیسک کلاس 4 حافظه 8 گیگابا...
+                                </span>
+
+                                <span class="c-swiper_price">
+                                    <span class="c-swiper_price-value">
+                                        ۴۹۹۰۰
+                                        <span>تومان</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="c-swiper_btn-next js-swiper_btn-next"></div>
+                    <div class="c-swiper_btn-prev js-swiper_btn-prev "></div>
+                </div>
+            </div>
+        </section>
+
+        @*@await Component.InvokeAsync("InnerBannerComponent")*@
+    </div>
+
+
+</main>
+
+<div class="remodal c-remodal_share" data-remodal-id="share">
+    <button data-remodal-action="close" class="remodal-close"></button>
+
+    <div class="c-remodal_share-main">
+        <div class="c-remodal_share-aside">
+            <div class="c-remodal_share-title">اشتراک گذاری</div>
+            <div class="c-remodal_share-icon"></div>
+        </div>
+
+        <div class="c-remodal_share-content">
+            <div class="c-form_share">
+                <div class="c-form_share-title">اشتراک گذاری در شبکه های اجتماعی</div>
+                <div class="c-form_share-row c-form_share-row_btn-share">
+                    <div class="c-form_share-col">
+                        <ul class="c-btn_share-group">
+                            <li>
+                                <a href="https://twitter.com/intent/tweet/?url=https://www.digikala.com/brand/@Model.EnTitle/" class="btn-share btn-share_twitter"></a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/sharer/sharer.php?m2w&s=100&p[url]=https://www.digikala.com/brand/@Model.EnTitle/" class="btn-share btn-share_fb"></a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/share?url=https://www.digikala.com/brand/@Model.EnTitle/" class="btn-share btn-share_gplus"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="c-remodal_share-url">
+                <div class="c-remodal_share-url_title">آدرس صفحه</div>
+                <div class="c-remodal_share-url_row">
+                    <div class="c-remodal_share-url_col">
+                        <label class="c-url">
+                            <input type="url" class="c-url_input" value="https://www.digikala.com/brand/@Model.EnTitle/" readonly>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section script{
+    <script src="/js/nouislider.min.js"></script>
+    <script src="/js/swiper.min.js"></script>
+    <script src="/js/remodal.js"></script>
+
+    <script>
+        search_page();
+        $('html,body').animate({ scrollTop: 0 }, 500);
+
+
+        $('.js-open_share').click(function () {
+            var add_compare = $('[data-remodal-id=share]').remodal();
+            add_compare.open();
+        });
+
+        $(function () {
+            var win_width = $(document).width();
+            responsive(win_width)
+
+            $(window).on("resize", function () {
+                win_width = $(document).width();
+                responsive(win_width)
+            })
+
+            function responsive(width) {
+                if (width <= 720) {
+                    $('.js-search_page-list').addClass('is-list');
+                    $(".js-listing-type").removeClass('is-active');
+                    $('[data-type=list]').addClass('is-active');
+                    $('.js-search_page-right_content').css({ position: "relative", "transform": 'translateY(0px)' });
+                }
+
+            }
+        })
+
+    </script>
+}

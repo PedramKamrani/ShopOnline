@@ -1,0 +1,46 @@
+﻿<div class="c-heder_action-btn">
+    <div>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a  asp-action="Login" asp-controller="Account" class="c-header_btn-user ">
+                <span>ورود به حساب کاربری</span>
+            </a>
+        }
+        else
+        {
+            <a class="c-header_btn-user js-header_btn-user c-header_btn-user-has-dropdown">
+                <div class="c-header_btn-user_has-notification js-header_btn-user_has-notification"></div>
+                <span></span>
+            </a>
+
+            <div class="c-header_user-dropdown  js-header_user-dropdown">
+                <div class="c-header_user-dropdown_account">
+                    <div class="c-header_user-dropdown_account-container">
+                        <div class="c-header_user-dropdown_account-img">
+                            <img src="~/svg/avatar/2.svg" />
+                        </div>
+                        <div class="c-header_user-dropdown_account-info">
+                            <p class="c-header_user-dropdown_account-name">@User.FindFirst("name").Value</p>
+                            <span>مشاهده حساب کاربری</span>
+                        </div>
+                    </div>
+                    <div class="c-header_user-dropdown_account-wallet">
+                        <div class="c-header_user-dropdown_account-wallet_item">
+                            کیف پول
+                            <div>
+                                <span class="c-header_user-dropdown_account-amount">۸</span>
+                                تومان
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+
+                <div class="c-header_user-dropdown-actions">
+
+                    <a class="c-header_user-dropdown_action c-header_user-order" asp-controller="profile" asp-action="order">سفارش‎‌های من</a>
+                    <a class="c-header_user-dropdown_action c-header_user-logout" asp-controller="Account" asp-action="logout">خروج از حساب کاربری</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

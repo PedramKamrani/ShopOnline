@@ -1,0 +1,48 @@
+﻿@model CorService.ViewModels.Categorey.ShowCategoriesForUserViewModel
+
+@{
+    ViewData["Title"] = Model.FaTitle;
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+
+@section style{
+    <link rel="stylesheet" type="text/css" href="/css/swiper.min.css">
+
+}
+
+<main>
+    <div class="container">
+        <nav>
+            <ul class="c-breadcrumb">
+                <li><a href="#"><span>فروشگاه اینترنتی دیجی‌کالا</span></a></li>
+                <li><span>کالای دیجیتال</span></li>
+            </ul>
+        </nav>
+
+        <div class="c-category_card js-category_card">
+            @foreach (var item in Model.categories)
+            {
+                <section class="c-category_card_item js-category_card_item">
+                    <div class="c-category_card_content">
+                        <a href="#">
+                            <div class="c-category_card-header">
+                                <img class="c-category_card_image" src="/img/category/@item.ImgName">
+                                <div class="c-category_card_title" style="color:black">@item.FaTitle</div>
+                            </div>
+                        </a>
+
+                        @await Component.InvokeAsync("ShowSubCategoryComponent", item.CategoryId)
+
+                    </div>
+                </section>
+
+            }
+
+
+        </div>
+
+    </div>
+</main>
+
+

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DataLayer.Entites.Product.Products>
+@{
+    ViewData["Title"] = "_ProductFor";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+
+<div class="c-single_swiper-content">
+    <div class="c-single_swiper-headline js-single_swiper-headline is-active">
+        پیشنهادهای لحظه‌ای برای شما
+    </div>
+
+    <div class="c-single_swiper-container">
+        <div class="c-single_swiper-box js-single_swiper-box">
+            @foreach (var item in Model)
+            {
+                <div class="c-single_swiper-box js-single_swiper-box">
+
+                    <a class="c-single_swiper-slide js-single_swiper-slide thumbnail" href="#" style="width:218px">
+                        <span class="c-single_swiper-img">
+                            <img src="~/img/product/@item.ImgName">
+                        </span>
+                        <span class="c-single_swiper-desc">
+                            <span class="c-single_swiper-title">
+                                @item.EnTitle
+                            </span>
+                            <span class="c-single_swiper-price">
+                                @item.Weight
+                                <span>تومان</span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+

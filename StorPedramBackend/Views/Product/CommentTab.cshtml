@@ -1,0 +1,63 @@
+﻿@model Tuple<List<CommentForUserViewModel>, List<ReviewRatingViewModel>, int> 
+@{
+    Layout = null;
+    int id = ViewBag.productid;
+}
+
+
+<h2 class="c-tabs_content-comments_headline">
+    امتیاز کاربران به:
+    <span>
+        @Html.Raw(ViewBag.faTitle)
+    </span>
+</h2>
+
+<h2 class="c-params_headline in-mobile">
+    <div class="c-tabs_content-comments_headline-action">
+        نظرات کاربران
+        <a href="#" class="c-tabs_content-comments_headline-btn">افزودن نظر</a>
+    </div>
+    <span>@Html.Raw(ViewBag.faTitle)</span>
+   
+</h2>
+
+<div class="c-tabs_content-comments_summary">
+    <div class="c-tabs_content-comments_summary-rating">
+        <ul class="c-tabs_content-desc_rating">
+            @foreach (var item in Model.Item2)
+            {
+                <li>
+                    <div class="cell">@item.Title</div>
+                    <div class="cell">
+                        <div class="c-rating" data-rate="@item.Value.GetRatingRange()">
+                            <div class="c-rating_rate" style="width:@item.Value%"></div>
+                        </div>
+                    </div>
+                </li>
+            }
+
+
+
+        </ul>
+    </div>
+
+    <div class="c-tabs_content-comments_summary-note">
+        <span>شما هم می‌توانید در مورد این کالا نظر بدهید.</span>
+        <p>
+            برای ثبت نظر، لازم است ابتدا وارد حساب کاربری خود شوید. اگر این محصول را قبلا از دیجی‌کالا خریده باشید،
+            نظر شما به عنوان مالک محصول ثبت خواهد شد.
+        </p>
+        <a class="btn-add_comment" add data-id="@id" data-toggle="modal" data-target="#modal-add">
+            <span class="btn-add_comment-text">
+                افزودن نظر جدید
+            </span>
+        </a>
+    </div>
+</div>
+
+<div id="CommentList">
+    @Html.Partial("CommentList", Model.Item1)
+</div>
+
+
+

@@ -1,0 +1,101 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>پروفایل - @User.FindFirst("name").Value | فروشگاه اینترنتی دیجی‌کالا</title>
+
+    <link rel="stylesheet" type="text/css" href="~/css/remodal.css">
+    <link rel="stylesheet" type="text/css" href="~/css/remodal-default-theme.css">
+    <link rel="stylesheet" type="text/css" href="~/css/profile.css">
+    @RenderSection("style", false)
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style_1366.css" media="screen and (min-width:1366px">
+    <link rel="stylesheet" type="text/css" href="~/css/mobile_style.css" media="screen and (max-width:720px">
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <partial name="_header" />
+    <div class="c-cover js-cover"></div>
+
+    <main>
+        <div class="container">
+            <div class="page">
+                <div class="page_row">
+                    @await Html.PartialAsync("_rightPanel.cshtml")
+
+                    <section class="page_content">
+                        <div class="c-profile_message">
+                            <div class="c-profile_message-content">
+                                <p>با تایید شماره همراه، از این پس می‌توانید ورودی سریع و آسان داشته باشید. در صورت عدم تایید، امکان ورود با شماره همراه وجود ندارد.</p>
+                                <a class="c-profile_message-btn">تایید شماره همراه</a>
+                            </div>
+                        </div>
+
+
+                        @RenderBody()
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="remodal c-remodal_avatar" data-remodal-id="avatar">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <div class="c-remodal_avatar-content">
+            <div class="c-remodal_avatar-title">تغییر نمایه کاربری شما</div>
+
+            <ul class="c-remodal_avatar-list">
+                <li class="js-change-avatar" data-id="1"><span class="c-remodal_avatars-item" style="background-image:url(/svg/avatar/1.svg)"></span></li>
+                <li class="js-change-avatar" data-id="2"><span class="c-remodal_avatars-item" style="background-image:url(/svg/avatar/2.svg)"></span></li>
+                <li class="js-change-avatar" data-id="3"><span class="c-remodal_avatars-item" style="background-image:url(/svg/avatar/3.svg)"></span></li>
+                <li class="js-change-avatar" data-id="4"><span class="c-remodal_avatars-item" style="background-image:url(/svg/avatar/4.svg)"></span></li>
+                <li class="js-change-avatar" data-id="5"><span class="c-remodal_avatars-item" style="background-image:url(/svg/avatar/5.svg)"></span></li>
+                <li class="js-change-avatar" data-id="6"><span class="c-remodal_avatars-item" style="background-image:url(/svg/avatar/6.svg)"></span></li>
+                <li class="js-change-avatar" data-id="7"><span class="c-remodal_avatars-item" style="background-image:url(/svg/avatar/7.svg)"></span></li>
+                <li class="js-change-avatar" data-id="8"><span class="c-remodal_avatars-item" style="background-image:url(/svg/avatar/8.svg)"></span></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="~/js/persianumber.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/remodal.js"></script>
+    <script src="~/js/main.js"></script>
+
+    @RenderSection("script", false)
+
+
+    <script>
+            var avatarmodal=$('[data-remodal-id=avatar]').remodal();
+            $('.c-profle_box-avatar_edit').click(function(){
+
+                avatarmodal.open();
+            });
+
+           $('.js-change-avatar').click(function () {
+               var id = $(this).data("id");
+               $.ajax({
+                   type: 'POST',
+                   url: '/profile/ChangeAvatar',
+                   data: { id: id },
+                   success: function (data) {
+                       if (data) {
+                           avatarmodal.close();
+                           $('.c-profle_box-avatar').css('background-image','url(/svg/avatar/'+id+'.svg)')
+                       }
+                       else {
+                           avatarmodal.close();
+                       }
+                   },
+                   error: function () {
+
+                   }
+               })
+           })
+
+    </script>
+</body>
+</html>

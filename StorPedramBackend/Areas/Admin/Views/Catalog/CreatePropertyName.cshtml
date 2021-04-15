@@ -1,0 +1,96 @@
+﻿@model DataLayer.Entites.Proprty.ProprtyName
+@{
+    ViewData["Title"] = "CreatePropertyName";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">ایجاد دسته بندی جدید </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CreatePropertyName">
+                    <div class="box-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group">
+                            <label asp-for="Title" class="control-label"></label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Priority" class="control-label"></label>
+                            <input asp-for="Priority" class="form-control" />
+                            <span asp-validation-for="Priority" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="UseSearch" /> @Html.DisplayNameFor(model => model.UseSearch)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PropertyGroupId" class="control-label"></label>
+                            <select asp-for="PropertyGroupId" asp-items="@(new SelectList(ViewBag.Groups,"PropertyGroupId","Title"))" class="form-control "></select>
+
+                            <span asp-validation-for="PropertyGroupId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="WikiText" class="control-label"></label>
+                            <input asp-for="WikiText" class="form-control" />
+                            <span asp-validation-for="WikiText" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <select id="categorylist" asp-items="@(new SelectList(ViewBag.CategoryList,"Id","Title"))" class="form-control col-md-5"></select>
+                            <div class="col-md-2"><a class="btn btn-success btn-add">افزودن</a></div>
+                            <div class="parentlist col-md-5"></div>
+                        </div>
+                        @*<div class="form-group">
+                                <label asp-for="CategoryId" class="control-label"></label>
+                                <select asp-for="CategoryId"  asp-items="@(new SelectList(ViewBag.Category,"Id","Title"))" class="form-control "></select>
+
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                            </div>*@
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section script{
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+    <script>
+    $(".btn-add").click(function () {
+        if ($("#categorylist").val()) {
+            var value = $("#categorylist").children("option:selected").val();
+            var text = $("#categorylist").children("option:selected").text();
+            $(".parentlist").append("<div class=' btn-block btn-info' style='padding:7px'><button style='margin-left:0' type='button' class='close pull-left btn-remove'>×</button>" +
+                "<input type='hidden' value='" + value + "' name='category' /><span style='margin-left:10px' class='parenttext'>" + text + "</span> </div>");
+            $("#categorylist").children("option:selected").remove();
+        }
+    });
+
+    $('.parentlist').delegate(".btn-remove", 'click', function () {
+        var text = $(this).nextAll($(".parenttext")).text();
+        var value = $(this).nextAll($("input [type=hidden]")).val();
+        $("#categorylist").append($('<option>', {
+            value:value,
+            text:text
+        }));
+        $(this).parent().remove();
+    });
+    </script>
+}
+
+

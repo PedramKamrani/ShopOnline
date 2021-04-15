@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CorService.ViewModels.Product.ProductListViewModel>
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+     int pagecount = (int)Math.Ceiling((double)ViewBag.pagecount /2);
+    int pagenumber = ViewBag.pagenumber;
+}
+
+<div class="box-header with-border">
+    <a style="float:left;" asp-action="CreateProduct" class="btn btn-success">ایجاد محصول جدید</a>
+</div>
+<div id="productlist">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FaTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FaTitle)
+                    </td>
+                    <td>
+                        @Html.Raw((String.IsNullOrEmpty(item.Image) ? "" : "<img src='/img/Product/" + item.Image + "' class='thumbnail' width='150' />"))
+
+                    </td>
+                    <td>
+                        <a asp-action="GalleryList" asp-route-id="@item.Id" class="btn btn-info">گالری</a>
+                        <a asp-action="ProductProperty" asp-route-id="@item.Id" class="btn btn-info">خصوصیات</a>
+                        <a asp-action="ProductReview" asp-route-id="@item.Id" class="btn btn-info">نقد و بررسی</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @(pagecount > 1 ? Html.Raw(pagecount.GetPaging(pagenumber, "js-pager-item")) : Html.Raw(""))
+</div>
+
+<script>
+    $('#productlist').delegate(".js-pager-item", "click", function () {
+        var pagenum = parseInt($(this).data("pagenumber"))
+             $.ajax({
+        type: 'GET',
+        url: '/admin/catalog/ProductList',
+        data: { searchtext: '@Html.Raw(ViewBag.searchtext)', pagenumber: pagenum},
+        success: function (res) {
+            $("#list").html(res);
+        }
+    })
+    });
+
+</script>
+

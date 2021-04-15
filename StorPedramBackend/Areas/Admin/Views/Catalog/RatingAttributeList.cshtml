@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DataLayer.Entites.Product.RatingAttributs>
+@{
+    ViewData["Title"] = "RatingAttributeList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content">
+    @if (TempData["res"] != null)
+    {
+        if (TempData["res"].ToString() == "success")
+        {
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close pull-left" data-dismiss="alert" aria-hidden="true">×</button>
+
+                عملیات با موفقیت انجام شد
+            </div>
+        }
+        @if (TempData["res"].ToString() == "faild")
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close pull-left" data-dismiss="alert" aria-hidden="true">×</button>
+
+                خطا در انجام عملیات
+            </div>
+        }
+    }
+
+    <div class="box">
+        <div class="box-header with-border">
+            <a asp-action="CreateAttribute" class="btn btn-success">ایجاد ویژگی</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RatingAttributeId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RatingAttributeId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DataLayer.Entites.Slider>
+@{
+    Layout = null;
+}
+
+<section class="c-main_slider c-desktop_main-slider js-main_slider">
+    <div class="c-slider_slide swiper-wrapper">
+        @foreach (var item in Model)
+        {
+            <a class="c-slide js-slide swiper-slide" title="@item.Descrption" style="background-image:url(/img/slider/@item.ImgName)" href="@item.Link"></a>
+        }
+
+    </div>
+
+    <div class="c-slider_dots">
+
+
+    </div>
+
+    <div class="c-slider_next js-slider_next"></div>
+    <div class="c-slider_prev js-slider_prev"></div>
+
+</section>
+
+<section class="c-main_slider mobil-main_slider js-main_slider">
+    <div class="c-slider_slide swiper-wrapper">
+        @foreach (var item in Model)
+        {
+            <a class="c-slide js-slide swiper-slide" title="@item.Descrption" style="background-image:url(/img/slider/mobile-slider/@item.ImgName)" href="@item.Link"></a>
+        }
+
+    </div>
+
+    <div class="c-slider_dots">
+
+
+    </div>
+
+    <div class="c-slider_next js-slider_next"></div>
+    <div class="c-slider_prev js-slider_prev"></div>
+
+</section>

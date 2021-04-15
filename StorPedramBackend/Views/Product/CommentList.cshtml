@@ -1,0 +1,137 @@
+﻿@model List<CommentForUserViewModel>
+@{
+    Layout = null;
+    int pagecount=(int)Math.Ceiling((double)ViewBag.pagecount/2);
+    int Commentcount = ViewBag.commentcount;
+    int sort = ViewBag.Commentsort;
+    int pagenumber = ViewBag.pagenumber;
+}
+
+<div class="c-tabs_content-comments_filter">
+    <span class="c-faq_filter-title">نظرات کاربران</span>
+    <ul class="c-faq_filter-items" data-title="مرتب سازی بر اساس:">
+        <li><a class="@(ViewBag.Commentsort ==1 ? "is-active": "js-sort_item")" data-sort="1">نظر خریداران </a></li>
+        <li><a class="@(ViewBag.Commentsort ==2 ? "is-active": "js-sort_item")" data-sort="2">مفیدترین نظرات</a></li>
+        <li><a class="@(ViewBag.Commentsort ==3 ? "is-active": "js-sort_item")" data-sort="3">جدیدترین نظرات</a></li>
+    </ul>
+</div>
+
+<div>
+    <ul class="c-comments_list">
+        @foreach (var item in Model)
+        {
+            <li>
+                <section>
+                    <div class="c-comments_list-aside">
+                        <div class="c-comments_list-header in-mobile">
+                            <div>
+                                @item.CommentTitle
+                                <span>توسط @item.UserName در تاریخ @item.CreateDate.GetMonthPersian()</span>
+                            </div>
+                            <div class="mobile-comment_user-purchased">خریدار  </div>
+                        </div>
+                        <div class="c-comment_user-purchased in-desktop">خریدار این محصول</div>
+                        <ul class="c-comment_user-shopping">
+                            <li>
+                                <div class="c-comments_list-aside_row">رنگ خریداری شده:</div>
+                                <div class="c-comments_list-aside_row c-comments_list-aside_color-row">
+                                    <span class="c-comments_list-aside_color-vlaue"
+                                          style="background-color:#212121"></span>
+                                    مشکی
+                                </div>
+                            </li>
+                            <li>
+                                <div class="c-comments_list-aside_row">خریداری شده از:</div>
+                                <div class="c-comments_list-aside_row c-comments_list-aside_seller-row">
+                                    <a class="c-link_underline">دیجی‌کالا</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="c-comment_user-purchased c-comment_user-advise">خرید این محصول را توصیه می کنم</div>
+                    </div>
+
+                    <div class="c-comments_list-content">
+                        <div class="c-comments_list-header in-desktop">
+                            <div>
+                                @item.CommentTitle
+                                <span>توسط @item.UserName در تاریخ @item.CreateDate.GetMonthPersian()</span>
+                            </div>
+                        </div>
+                        @if (item.Negative != null || item.Positive != null)
+                        {
+                            <div class="c-comments_evaluation">
+                                <div class="c-comments_evaluation-positive">
+                                    @if (item.Positive != null)
+                                    {
+                                        <span>نقاط قوت</span>
+                                        <ul>
+                                            @foreach (var item2 in item.Positive.GeteEvaluation())
+                                            {
+                                                <li>@item2</li>
+                                            }
+                                        </ul>
+                                    }
+
+                                </div>
+
+                                <div class="c-comments_evaluation-negative">
+
+                                    @if (item.Positive != null)
+                                    {
+                                        <span>نقاط ضعف</span>
+                                        <ul>
+                                            @foreach (var item2 in item.Negative.GeteEvaluation())
+                                            {
+                                                <li>@item2</li>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        }
+
+
+                        <p>
+                            @item.CommentText
+                        </p>
+                        <div class="c-comments_list-footer">
+                            <div class="c-comments_likes">
+                                آیا این نظر برایتان مفید بود؟
+                                <button class="btn-like" data-counter="@item.Like">بله</button>
+                                <button class="btn-like btn-dislike" data-counter="@item.DisLike">خیر</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </li>
+        }
+
+
+
+    </ul>
+
+    @Html.Raw(pagecount.GetPaging(pagenumber, "js-comment c-pager_item"))
+</div>
+
+<script>
+    $('#CommentList').delegate(".js-comment ", "click", function () {
+        var pagenum = parseInt($(this).data("pagenumber"))
+        $('#CommentList').load("/Product/CommentList", { ProductId: @ViewBag.productid, pagenumber: pagenum, sort: @ViewBag.Commentsort, commentcount:@ViewBag.commentcount })
+        clearInterval(timer)
+        scrolltotab()
+    });
+
+    @*$('#CommentList').delegate(".js-sort_item", "click", function () {
+           var sort = parseInt($(this).data("sort"))
+        $('#CommentList').load("/Product/CommentList", { ProductId: @ViewBag.productid, pagenumber: 1, sort: sort, commentcount:@ViewBag.commentcount })
+        clearInterval(timer)
+        scrolltotab()
+    });*@
+
+    $('.c-tabs_content-comments_filter').delegate(".js-sort_item", "click", function () {
+           var sort = parseInt($(this).data("sort"))
+        $('.c-tabs_content-comments_filter').load("/Product/CommentList", { ProductId: @ViewBag.productid, pagenumber: 1, sort: 2, commentcount:@ViewBag.commentcount })
+        clearInterval(timer)
+        scrolltotab()
+    });
+</script>

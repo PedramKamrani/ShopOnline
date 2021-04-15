@@ -1,0 +1,97 @@
+﻿@{
+    string Controller = ViewContext.RouteData.Values["Controller"].ToString();
+    string Action = ViewContext.RouteData.Values["Action"].ToString();
+    
+}
+<aside class="main-sidebar">
+     sidebar: style can be found in sidebar.less 
+    <section class="sidebar">
+         Sidebar user panel 
+        <div class="user-panel">
+            <div class="pull-right image">
+                <img src="/img/back_edit.png" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-right info">
+                <p>پدرام کامرانی</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> آنلاین</a>
+            </div>
+        </div>
+         search form 
+         /.search form 
+         sidebar menu: : style can be found in sidebar.less 
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">منو</li>
+            <li class="treeview @(Controller == "Banner" ? "active" :"")">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>بنر</span>
+                    <span class="pull-left-container">
+                        <i class="fa fa-angle-right pull-left"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(Action.Contains("Slider") ? "active":"") "><a asp-area="Admin" asp-controller="Banners" asp-action="SliderList"><i class="fa fa-circle-o"></i>  اسلایدر اصلی</a></li>
+                    <li class="@(Action.Contains("Banner") ? "active":"") "><a asp-controller="Banners" asp-action="BannerList"><i class="fa fa-circle-o"></i> بنرها</a></li>
+
+                </ul>
+            </li>
+            <li class=" treeview @(Controller == "Catalog" || Controller == "FileManager" ? "active" :"")">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>کاتالوگ</span>
+                    <span class="pull-left-container">
+                        <i class="fa fa-angle-right pull-left"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(Action.Contains("Product") ? "active":"")"><a asp-controller="Catalog" asp-action="ProductList"><i class="fa fa-circle-o"></i>  محصولات</a></li>
+                    <li class="@(Action.Contains("Category") ? "active":"")"><a asp-controller="Catalog" asp-action="CategoryList"><i class="fa fa-circle-o"></i>  دسته بندی ها</a></li>
+                    <li class="@(Action.Contains("Brand") ? "active":"")"><a asp-controller="Catalog" asp-action="BrandList"><i class="fa fa-circle-o"></i>  برندها</a></li>
+                    <li class="@(Action.Contains("Rating") ? "active":"")"><a asp-controller="Catalog" asp-action="RatingAttributeList"><i class="fa fa-circle-o"></i>  ویژگی ها</a></li>
+                    <li class="@(Action.Contains("FileManager") ? "active":"")"><a asp-controller="FileManager" asp-action="MainFileManager"><i class="fa fa-circle-o"></i>  مدیریت فایل ها </a></li>
+                    <li class="treeview  @(Action.Contains("Property") ? "menu-open active":"")">
+                        <a href="#">
+                            <i class="fa fa-circle-o"></i> خصوصیات
+                            <span class="pull-left-container">
+                                <i class="fa fa-angle-right pull-left"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" style="display: @(Action.Contains("Property") ? "block":"")">
+                            <li class="@(Action.Contains("PropertyGroup") ? "active":"")"><a asp-controller="Catalog" asp-action="ProprtyGroupList" asp-route-id="1"><i class="fa fa-circle-o"></i>  گروه خصوصیات</a></li>
+                            <li class="@(Action.Contains("PropertyName") ? "active":"")"><a asp-controller="Catalog" asp-action="PropertyNameList"><i class="fa fa-circle-o"></i>  نام خصوصیات</a></li>
+                            <li class="@(Action.Contains("PropertyValue") ? "active":"")"><a asp-controller="Catalog" asp-action="PropertyValueList"><i class="fa fa-circle-o"></i>  مقدار خصوصیات</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class=" treeview @(Controller == "Modules" ? "active" :"")">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>ماژول</span>
+                    <span class="pull-left-container">
+                        <i class="fa fa-angle-right pull-left"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(Action.Contains("Menu") ? "active":"")"><a asp-controller="Modules" asp-action="MenuList"><i class="fa fa-circle-o"></i>  منو اصلی  </a></li>
+
+                </ul>
+            </li>
+
+            <li class=" treeview @(Controller == "User" ? "active" :"")">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>کاربران</span>
+                    <span class="pull-left-container">
+                        <i class="fa fa-angle-right pull-left"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(Action.Contains("Role") ? "active":"")"><a asp-controller="User" asp-action="RoleList"><i class="fa fa-circle-o"></i> نقش ها </a></li>
+                    <li class="@(Action.Contains("Factor") ? "active":"")"><a asp-controller="order" asp-action="orderList"><i class="fa fa-circle-o"></i> فاکتورها  </a></li>
+
+                </ul>
+            </li>
+
+
+        </ul>
+    </section>
+     /.sidebar 
+</aside>

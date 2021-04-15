@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "ProductListContainer";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int pagecount = (int)Math.Ceiling((double)ViewBag.pagecount / 2);
+    int pagenumber = ViewBag.pagenumber;
+}
+
+    <div class="content">
+        @if (TempData["res"] != null)
+        {
+            if (TempData["res"].ToString() == "success")
+            {
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close pull-left" data-dismiss="alert" aria-hidden="true">×</button>
+
+                    عملیات با موفقیت انجام شد
+                </div>
+            }
+            @if (TempData["res"].ToString() == "faild")
+            {
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close pull-left" data-dismiss="alert" aria-hidden="true">×</button>
+
+                    خطا در انجام عملیات
+                </div>
+            }
+        }
+        <a class="float-left text-primary" asp-action="ProductList">رفتن نه لیست محصولات</a>
+        <div class="box">
+            <div class="box-header with-border">
+                <a style="float:left;" asp-action="CreateProduct" class="btn btn-success">ایجاد محصول جدید</a>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <form asp-action="ProductList" data-ajax="true"
+                          data-ajax-update="#list"
+                          data-ajax-mode="replace">
+                        <input type="text" name="searchtext" class="form-control col-md-9" />
+                        <button type="submit" class="btn btn-success col-md-3">جستجو</button>
+                    </form>
+                    <div id="list"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+@section script{
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: '/admin/catalog/ProductList',
+            data: { searchtext: '', pagenumber: 1 },
+            success: function (res) {
+                $("#list").html(res);
+            }
+        })
+
+    </script>
+}
+
+
+

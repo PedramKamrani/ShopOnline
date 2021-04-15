@@ -1,0 +1,103 @@
+﻿@model List<CorService.ViewModels.Favorite.FavoriteViewModel>
+@{
+    ViewData["Title"] = "FProduct";
+    Layout = null;
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+}
+
+<div class="c-profile_wishlist">
+    <ul class="c-profile_wishlist-listing">
+        @foreach (var item in Model)
+        {
+            <li class="c-profile_wishlist-list_item">
+                <div class="c-profile_wishlist-list_item-thumb">
+                    <a href="#" class="c-profile_wishlist-list_item-img">
+                        <img src="~/img/product/@item.ImgName">
+                    </a>
+                    <button class="c-profile_wishlist-list_item-remove  js-remove_favorite" data-id="@item.FavoriteId"></button>
+                </div>
+                <div class="c-profile_wishlist-list_item-content">
+                    <div class="c-profile_wishlist-list_item-container">
+                        <h4>
+                            <a href="#">
+                                 @item.ProductTitle 
+                            </a>
+
+                        </h4>
+                        
+                        <div class="c-stars">
+                            <span class="c-stars_item"></span>
+                            <span class="c-stars_item"></span>
+                            <span class="c-stars_item"></span>
+                            <span class="c-stars_item"></span>
+                            <span class="c-stars_item"></span>
+                            <div class="c-stars_selected" style="width:48%">
+                                <span class="c-stars_item"></span>
+                                <span class="c-stars_item"></span>
+                                <span class="c-stars_item"></span>
+                                <span class="c-stars_item"></span>
+                                <span class="c-stars_item"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="c-profile_wishlist-list_item-container">
+                        <div class="c-profile_wishlist-list_item-price">
+                            <span>ناموجود</span>
+                        </div>
+                        <a asp-action="ProductDetail" asp-controller="Product" asp-route-id="@item.Productid" class="c-profile_wishlist-list_item-buttom">مشاهده محصول</a>
+                    </div>
+                </div>
+            </li>
+        }
+
+
+
+    </ul>
+</div>
+
+<div class="remodal c-remodal_alert" data-remodal-id="alertfavorite">
+    <div class="c-remodal_alert-container">
+        <div class="c-remodal_alert-content">
+            <p>آیا مطمئنید که این محصول از لیست مورد علاقه شما حذف شود؟</p>
+        </div>
+
+        <div class="c-remodal_alert-actions">
+            <form asp-action="RemoveFavorite" data-ajax="true"
+                  data-ajax-method="post"
+                  data-ajax-success="favoritesuccess">
+                <input name="id" type="hidden" id="favoriteid" />
+                <button type="submit" class="c-remodal_alert-button c-remodal_alert-button_confirm">بله</button>
+            </form>
+            <button class="c-remodal_alert-button c-remodal_alert-button_cancel">خیر</button>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script src="~/js/remodal.js"></script>
+
+@section script{
+
+    <script>
+        var alertfavorite;
+        $(document).ready(function () {
+            alertfavorite = $('[data-remodal-id=alertfavorite]').remodal();
+        });
+        $('.js-remove_favorite').click(function () {
+            var id = $(this).data('id');
+            $("#favoriteid").val(id);
+            alertfavorite.open();
+        });
+
+        function favoritesuccess() {
+            alertfavorite.close();
+            //$("#content").load('/profile/FProduct');
+        }
+
+    </script>
+}

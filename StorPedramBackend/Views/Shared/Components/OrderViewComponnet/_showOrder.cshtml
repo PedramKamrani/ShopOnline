@@ -1,0 +1,30 @@
+﻿@model DataLayer.Entites.OrderProuduct.OrderProuducts
+@{
+    Layout = null;
+}
+
+<div class="c-product_buy">
+    <div class="c-product_seller-info">
+        <div id="variantdetial">
+
+            <div class="c-product_price">
+                @if (Model.Sum!=null)
+                {
+                    <div class="c-product_price-real">
+                        <span>@Model.Sum</span>
+                        تومان
+                    </div>
+                }
+                else
+                {<div class="c-product_price-real">
+                    <span>0</span>
+                    تومان
+                </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

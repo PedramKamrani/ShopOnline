@@ -1,0 +1,116 @@
+﻿@model CorService.ViewModels.Categorey.EditCategoryViewModel
+@{
+    ViewData["Title"] = "EditCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    List < int> parentlist= ViewBag.ParentList;
+    List<GetCategoryForAddViewModel> parents = new List<GetCategoryForAddViewModel>();
+    TempData["Id"] = Model.Id;
+    TempData["Imgname"] = Model.CurrentImage;
+}
+
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">ویرایش دسته بندی  </h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="EditCategory" enctype="multipart/form-data">
+                    <div class="box-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="FaTitle" class="control-label"></label>
+                            <input asp-for="FaTitle" class="form-control" />
+                            <span asp-validation-for="FaTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EnTitle" class="control-label"></label>
+                            <input asp-for="EnTitle" class="form-control" />
+                            <span asp-validation-for="EnTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Descrption" class="control-label"></label>
+                            <input asp-for="Descrption" class="form-control" />
+                            <span asp-validation-for="Descrption" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            @Html.Raw((String.IsNullOrEmpty(Model.CurrentImage) ? "" : "<img src='/img/category/" + Model.CurrentImage + "' class='thumbnail' width='400' />"))
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Image" class="control-label"></label>
+                            <input asp-for="Image" type="file" accept="image/*" class="form-control" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <select id="categorylist" class="form-control col-md-5">
+                                @foreach (var item in ViewBag.CategoryList)
+                                {
+                                    if (parentlist.Contains(item.Id))
+                                    {
+                                        parents.Add(new GetCategoryForAddViewModel
+                                        {
+                                            Id = item.Id,
+                                            Title = item.Title
+                                        });
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Title</option>
+                                    }
+                                }
+                            </select>
+                            <div class="col-md-2"><a class="btn btn-success btn-add">افزودن</a></div>
+                            <div class="parentlist col-md-5">
+                                @foreach (var item in parents)
+                                {
+                                    <div class='btn-block btn-info' style='padding:7px'>
+                                        <button style='margin-left:0' type='button' class='close pull-left btn-remove'>×</button>
+                                        <input type='hidden' value='@item.Id' name='ParentList' />
+                                        <span style='margin-left:10px' class='parenttext'>@item.Title</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="ثبت" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="CategoryList">بازگشت به لیست</a>
+</div>
+
+@section script{
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+    <script>
+    $(".btn-add").click(function () {
+        if ($("#categorylist").val()) {
+            var value = $("#categorylist").children("option:selected").val();
+            var text = $("#categorylist").children("option:selected").text();
+            $(".parentlist").append("<div class=' btn-block btn-info' style='padding:7px'><button style='margin-left:0' type='button' class='close pull-left btn-remove'>×</button>" +
+                "<input type='hidden' value='" + value + "' name='ParentList' /><span style='margin-left:10px' class='parenttext'>" + text + "</span> </div>");
+            $("#categorylist").children("option:selected").remove();
+        }
+    });
+
+    $('.parentlist').delegate(".btn-remove", 'click', function () {
+        var text = $(this).nextAll($(".parenttext")).text();
+        var value = $(this).nextAll($("input [type=hidden]")).val();
+        $("#categorylist").append($('<option>', {
+            value:value,
+            text:text
+        }));
+        $(this).parent().remove();
+    });
+    </script>
+}
+
+
+

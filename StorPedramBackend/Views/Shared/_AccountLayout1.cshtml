@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/account/css/account.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/mobile_style.css" media="screen and (max-width:720px">
+</head>
+<body>
+
+    <main>
+        <div class="c-account_page">
+            <section class="c-account_page-content">
+                <div class="c-account_box">
+                    @*<a class="c-account_box-logo">Digikala</a>*@
+
+                    @RenderBody()
+                </div>
+            </section>
+           
+        </div>
+    </main>
+    <script src="~/js/jquery-3.3.1.min.js" asp-append-version="true"></script>
+    @RenderSection("script", false)
+</body>
+</html>

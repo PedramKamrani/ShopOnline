@@ -1,0 +1,23 @@
+﻿@model DataLayer.Entites.Product.Comment.Comment
+@{
+    ViewData["Title"] = "AddComm";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+    TempData["userid"] = User.FindFirst("userid").Value;
+}
+
+<form asp-action="AddComm" method="post">
+    <div class="card">
+        <div class="card-header">
+            افزودن نظر
+        </div>
+        <div class="card-body">
+            <label asp-for="CommentText"></label>
+            <textarea asp-for="CommentText">
+
+</textarea>
+            <input class="btn btn-success" type="submit" value="ذخیره" />
+        </div>
+    </div>
+</form>
+
+

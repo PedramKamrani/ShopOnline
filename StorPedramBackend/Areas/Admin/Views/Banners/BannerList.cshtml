@@ -1,0 +1,67 @@
+﻿@model IEnumerable<DataLayer.Entites.Banner.Banners>
+
+@{
+    ViewData["Title"] = "BannerList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="content">
+        @if (TempData["res"] != null)
+        {
+            if (TempData["res"].ToString() == "success")
+            {
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close pull-left" data-dismiss="alert" aria-hidden="true">×</button>
+
+                    عملیات با موفقیت انجام شد
+                </div>
+            }
+            @if (TempData["res"].ToString() == "faild")
+            {
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close pull-left" data-dismiss="alert" aria-hidden="true">×</button>
+
+                    خطا در انجام عملیات
+                </div>
+            }
+        }
+
+        <div class="box">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BannerId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BannerId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" asp-action="ChangeActive" asp-route-id="@item.BannerId">@(item.IsActive == true ? "غیر فعال کردن" : "فعال کردن")</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info" asp-action="EditBanner">ویرایش</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

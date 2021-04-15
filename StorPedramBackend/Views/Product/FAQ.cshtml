@@ -1,0 +1,143 @@
+﻿@model IEnumerable<CorService.ViewModels.Product.FAQShowUserViewModel>
+@{
+    Layout = null;
+    var questionlist = Model.GroupBy(q => q.QuestionID).Select(q => new
+    {
+        QuestionID = q.Key,
+        QuestionText = q.First().QuestionText,
+        QuestionDate = q.First().QuestionDate,
+        AnswerCount = q.First().AnswerCount,
+        QuestionName = q.First().QuestionName,
+
+           Answer = q.Select(a => a.Answer).ToList()
+
+
+        }).ToList();
+
+        int pagecount = (int)Math.Ceiling((double)ViewBag.faqcount / 4);
+    int pagenumber = ViewBag.faqPageNumber;
+    int sort = ViewBag.faqtsort;
+}
+<div id="faqcontent">
+    <div class="c-tabs_content-comments_filter">
+        <span class="c-faq_filter-title">
+            پرسش ها و پاسخ ها
+            <span>( @ViewBag.faqcount پرسش )</span>
+        </span>
+        <ul class="c-faq_filter-items" data-title="مرتب سازی بر اساس:">
+            <li><a class="@(ViewBag.faqtsort ==1 ? "is-active": "js-faqsort_item")" data-sort="1"> جدیدترین پرسش </a></li>
+            <li><a class="@(ViewBag.faqtsort ==2 ? "is-active": "js-faqsort_item")" data-sort="2"> بیشترین پاسخ به پرسش</a></li>
+            <li><a class="@(ViewBag.faqtsort ==3 ? "is-active": "js-faqsort_item")" data-sort="3"> پرسش های شما</a></li>
+        </ul>
+    </div>
+
+    <div class="c-faq_list-content">
+
+        @foreach (var item in questionlist)
+        {<ul class="c-faq_list">
+                <li>
+                    <div>
+                        <div class="c-faq_header c-faq_header-question">
+                            <p class="in-desktop">
+                                پرسش
+                                <span>@item.QuestionName</span>
+                            </p>
+
+                            <p class="in-mobile">
+                                <span class="block"> پرسش</span>
+                                <span>@item.QuestionName</span>
+                                <span>(@item.QuestionDate.GetMonthPersian())</span>
+                            </p>
+                        </div>
+
+                        <p class="c-faq_content">
+                            @item.QuestionText
+                        </p>
+
+                        <div class="c-faq_footer">
+                            <span class="in-desktop">@item.QuestionDate.GetMonthPersian()</span>
+                            <a data-questionid="@item.QuestionID" class="c-link_underline btn-add-answer">به این پرسش پاسخ دهید (@item.AnswerCount پاسخ) </a>
+                        </div>
+                    </div>
+                </li>
+
+                @foreach (var item1 in item.Answer)
+                {
+                    if (item1.AnswerId != null)
+                    {
+                        <li>
+                            <div>
+                                <div class="c-faq_header c-faq_header-answer">
+                                    <p>
+                                        پاسخ
+                                        <span>@item1.AnswerUser </span>
+                                    </p>
+                                </div>
+
+                                <p class="c-faq_content">
+                                    @item1.AnswerText
+                                </p>
+
+                                <div class="c-faq_footer">
+                                    <span class="in-desktop">
+                                        @{DateTime dt = DateTime.Parse(item1.AnswerDate);
+                                            dt.GetMonthPersian();
+                                        }
+                                    </span>
+                                    <div class="c-comments_likes">
+                                        آیا این پاسخ برایتان مفید بود ؟
+                                        <button class="btn-like js-btn-like js-like" data-answerid="@item1.AnswerId" data-type="true" data-counter="@item1.Like">بله</button>
+                                        <button class="btn-like btn-dislike js-btn-like js-dislike" data-answerid="@item1.AnswerId"  data-type="false" data-counter="@item1.Dislike">خیر</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        }
+
+       
+    </div>
+
+    @Html.Raw(pagecount.GetPaging(pagenumber, "js-faq_pager-item"))
+</div>
+
+<script>
+    $('#faqcontent').delegate(".js-faq_pager-item", "click", function () {
+        var pagenum = parseInt($(this).data("pagenumber"))
+         $.ajax({
+                    type: "POST",
+                    url: "/Product/FAQ/",
+                    data: { productid:@ViewBag.productid , pagenumber:pagenum, sort:@sort, faqcount:@ViewBag.faqcount },
+                    beforeSend: function () {
+                        $('[data-remodal-id=load]').remodal().open();
+                    },
+                    success: function (res) {
+                        $('#faqlist').html(res);
+                        scrolltotab()
+                        $("#faqcontent").html(ToFadigit($("#faqcontent").html()))
+                        setTimeout(function () { $('[data-remodal-id=load]').remodal().close(); },500)
+                    }
+                })
+    });
+
+        $('#faqcontent').delegate(".js-faqsort_item", "click", function () {
+            var sort = parseInt($(this).data("sort"))
+            $.ajax({
+                type: "POST",
+                url: "/Product/FAQ/",
+                data: { productid:@ViewBag.productid , pagenumber: 1, sort: sort, faqcount:@ViewBag.faqcount },
+                beforeSend: function () {
+                    $('[data-remodal-id=load]').remodal().open();
+                },
+                success: function (res) {
+                    $('#faqlist').html(res);
+                    scrolltotab()
+                    $("#faqcontent").html(ToFadigit($("#faqcontent").html()))
+                    setTimeout(function () { $('[data-remodal-id=load]').remodal().close(); }, 500)
+                }
+            })
+        })
+</script>
+

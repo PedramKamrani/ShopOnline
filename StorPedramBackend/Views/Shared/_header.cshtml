@@ -1,0 +1,93 @@
+﻿ 
+    <header class="c-header js-header">
+        <div class="container">
+            <div class="c-header_row">
+                <div class="c-header_right">
+                    <div class="c-header_logo">
+                        <a href="#" class="c-hedaer_logo-img">Digikala</a>
+                    </div>
+                    
+                </div>
+                <div class="c-header_action">
+                    @await Html.PartialAsync("_headerprofile")
+                    <div class="divider"></div>
+
+                    <div class="c-heder_action-btn">
+                        <div class="c-heder_action-btn-cart_container">
+                            <a class="c-header_btn-cart" asp-controller="">
+                                <span>سبد خرید</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="c-header_nav js-header_nav">
+            <div class="c-header_nav-line"></div>
+            <div class="container">
+                <div class="c-topmenu">
+                    <ul class="c-topmenu_list">
+                        <li>
+                            <ul class="c-topmenu_list-categoris_items">
+
+                                <li class="c-topmenu_list-hover js-topmenu_list-hover">
+                                    <div></div>
+                                </li>
+                                <li class="js-topmenu_list-li js-topmenu_list-li_has-sublist">
+                                    <div class="c-topmenu_list-main_menu-title">
+                                        دسته‌بندی کالاها
+                                    </div>
+                                    @await Component.InvokeAsync("MainMenuComponent")
+
+                                </li>
+                                
+                               
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="mobile-main_menu js-mobile-main_menu">
+            <div class="mobile-main_menu-logo "></div>
+            <div class="mobile-main_menu-content">
+                <ul class="mobile-main_menu-list">
+                  
+
+                  
+                </ul>
+            </div>
+        </nav>
+        <div class="mobile-menu_overlay js-mobile-menu_overlay"></div>
+        <div class="mobile-container">
+            <div class="mobile-header_nav">
+                <nav>
+                    <button class="mobile-header_categories js-mobile-header_categories">
+                        دسته‌بندی‌ها
+                        <span class="mobile-header_categories-icon"></span>
+                    </button>
+                </nav>
+                <div class="mobile-header_logo js-mobile-header_logo"><a href="#"></a></div>
+            </div>
+
+            <div class="mobile-header_search">
+                <div class="mobile-header_search-container">
+                    <input class="mobile-input_search js-mobile-input_search js-input_search" placeholder="جستجو از میان 1000000 کالا" type="text">
+                    <div class="c-search_result js-search_result">
+                        <div class="c-search_result-footer">
+                            بیشترین جستجوهای اخیر:
+                            <ul>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="mobile-header_cart"></a>
+                <a href="#" class="mobile-header_profile">
+                    <div class="c-header_btn-user_has-noticcation js-header_btn-user_has-noticcation"></div>
+                </a>
+            </div>
+        </div>
+    </header>

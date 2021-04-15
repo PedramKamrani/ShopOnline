@@ -1,0 +1,84 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AccountLayout1.cshtml";
+}
+
+
+<div class="c-account_box-headline">ورود به فروشگاه</div>
+<div class="c-account_box-content">
+    <form asp-action="Login" class="c-form_account" asp-route-returnurl="@ViewData["returnUrl"]">
+        <div asp-validation-summary="ModelOnly" style="color:red"></div>
+        <div class="c-form_account-title"> شماره موبایل</div>
+        <div class="c-form_account-row">
+            <div class="c-form_account-col">
+                <label class="c-form_account-label c-form_account-label_username">
+                    <input asp-for="Phone" class="c-form_account-input" placeholder=" شماره موبایل خود را وارد نمایید">
+                    <span asp-validation-for="Phone" class="field-error"></span>
+
+                </label>
+            </div>
+        </div>
+        <div class="c-form_account-title c-form_account-title_passowrd">
+            رمز عبور
+            <a asp-action="ForgetPassword" class="c-form_account-link">رمز عبور خود را فراموش کرده ام</a>
+        </div>
+        <div class="c-form_account-row">
+            <div class="c-form_account-col">
+                <label class="c-form_account-label c-form_account-label_password">
+                    <input asp-for="Password" class="c-form_account-input" placeholder="رمز عبور خود را وارد نمایید">
+                    <span asp-validation-for="Password" class="field-error"></span>
+
+                </label>
+            </div>
+        </div>
+        @*<div class="c-form_account-captcha">
+            <div class="g-recaptcha" data-sitekey="6Ld_9agZAAAAAHfpoXtRYAGY9vovb_q8C7_S4xlu"></div>
+            <span id="recaptchaerror" style="color:red"></span>
+        </div>*@
+        <div class="c-form_account-row">
+            <div class="c-form_account-col">
+                <button class="c-form_account-btn c-form_account-btn_login">ورود </button>
+            </div>
+        </div>
+
+        <div class="c-form_account-remember">
+            <label class="c-form_account-label_remember">
+                <input asp-for="IsPersistent" type="checkbox" checked="checked" id="remember">
+                <span class="c-checkbox_check"></span>
+            </label>
+            <label for="remember">مرا به خاطر داشته باش</label>
+        </div>
+
+    </form>
+</div>
+<div class="c-account_box-footer is-highlighted">
+    <span>کاربر جدید هستید؟</span>
+    <a class="c-form_account-link" asp-action="Register"> ثبت‌نام </a>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+<script>
+
+    $("form").submit(function (event) {
+
+        var recaptcha = $("#g-recaptcha-response").val();
+        if (recaptcha === "") {
+            event.preventDefault();
+            $("#recaptchaerror").text("لطفا احراز هویت را انجام دهید")
+        }
+
+        $.validator.methods.range;
+        $.validator.methods.range = function (value, element, param) {
+            if (element.type === 'checkbox') {
+                // if it's a checkbox return true if it is checked
+                return element.checked;
+            } else {
+                // otherwise run the default validation function
+                return defaultRangeValidator.call(this, value, element, param);
+            }
+        }
+
+    });
+</script>
+

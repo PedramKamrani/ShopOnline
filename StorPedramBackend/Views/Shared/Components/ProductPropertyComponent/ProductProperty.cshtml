@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CorService.ViewModels.Product.ProductPropertyUserViewModel>
+@{
+    Layout = null;
+}
+
+    <article>
+        <h2 class="c-params_headline">
+            مشخصات فنی
+            <span>@ViewData["EnTitle"]</span>
+        </h2>
+        @foreach (var item in Model.GroupBy(g => g.GroupName))
+        {
+            <section>
+                <h3 class="c-prop_title">@item.Key</h3>
+                <ul class="c-prop_list">
+                    @foreach (var item2 in item.ToList().GroupBy(g => g.PropertyName))
+                    {
+                        <li>
+                            <div class="c-prop_list-name"><span class="c-prop_list-span">@item2.Key</span></div>
+                            @foreach (var item3 in item2.ToList())
+                            {
+                                <div class="c-prop_list-value">
+                                    <span class="c-prop_list-span">@item3.PropertValue  </span>
+                                </div>
+                            }
+
+                        </li>
+                    }
+
+
+                </ul>
+            </section>
+        }
+
+
+
+    </article>

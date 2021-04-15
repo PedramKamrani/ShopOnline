@@ -1,0 +1,11 @@
+﻿@model IEnumerable<DataLayer.Entites.OrderProuduct.OrderProuducts>
+@{
+    ViewData["Title"] = "orderList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@foreach (var item in Model)
+{
+    @item.Sum;
+}</h2>
+

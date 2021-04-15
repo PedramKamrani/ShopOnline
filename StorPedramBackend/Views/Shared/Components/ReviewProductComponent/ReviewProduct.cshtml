@@ -1,0 +1,105 @@
+﻿@model CorService.ViewModels.Product.ProductReviewViewModel
+@using CorService.ExtinsionMethod
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+@if (String.IsNullOrEmpty(Model.ShortReview) && String.IsNullOrEmpty(Model.Review) && String.IsNullOrEmpty(Model.Negative) &&
+String.IsNullOrEmpty(Model.Psitive) && String.IsNullOrEmpty(Model.Suammry))
+{
+
+    <script>
+        $('li[data-tab-name="review"]').remove();
+        $('li[data-tab-name="prop"]').addClass('is-active');
+
+    </script>
+}
+<article>
+    @if (!String.IsNullOrEmpty(Model.Suammry))
+    {
+        <h2 class="c-params_headline">
+            نقد و بررسی اجمالی
+            <span>@ViewData["Title"]</span>
+        </h2>
+
+        <section class="c-tabs_content-desc_summary">
+            <div class="c-mask js-mask">
+                <div class="c-mask_text js-mask_text" style="max-height:250px">
+                    <p>
+                        @Model.Suammry
+                    </p>
+                </div>
+                <a class="c-mask_btn js-mask_btn">ادامه مطلب</a>
+            </div>
+        </section>
+    }
+    <section class="c-tabs_content-desc_stats">
+        @if (Model.ReviewRatingViewModels.Count() > 0)
+        {
+            <div class="c-tabs_content-desc_stats-aside">
+                <ul class="c-tabs_content-desc_rating">
+                    @foreach (var item in Model.ReviewRatingViewModels)
+                    {
+                        <li>
+                            <div class="cell">@item.Title </div>
+                            <div class="cell">
+                                <div class="c-rating" data-rate="@item.Value.GetRatingRange()">
+                                    <div class="c-rating_rate" style="width:@item.Value%"></div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        }
+
+
+        <div class="c-tabs_content-desc_stats-aside">
+            <div class="c-tabs_content-desc_stats-evaluation">
+                @if (!String.IsNullOrEmpty(Model.Psitive))
+                {
+                    string[] str = Model.Psitive.Split("=");
+                    <div class="c-tabs_content-desc_stats-evaluation_positive">
+                        <span>نقاط قوت</span>
+                        <ul>
+                            @foreach (var item in str)
+                            {
+                                <li>@item</li>
+                            }
+                        </ul>
+                    </div>
+                }
+                @if (!String.IsNullOrEmpty(Model.Negative))
+                {
+                    string[] negativestr = Model.Negative.Split("=");
+                    <div class="c-tabs_content-desc_stats-evaluation_negative">
+                        <span>نقاط ضعف</span>
+                        <ul>
+                            @foreach (var item in negativestr)
+                            {
+                                <li>@item</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    @if (!String.IsNullOrEmpty(Model.ShortReview) || !String.IsNullOrEmpty(Model.Review))
+    {
+        <h2 class="c-params_headline">
+            نقد و بررسی تخصصی
+        </h2>
+        <div class="c-tabs_content-desc_review">
+            <p>
+                @Model.ShortReview
+            </p>
+        </div>
+        @*<--برای حذف تگ htmlداخل متن---->*@
+        <div class="c-tabs_content-desc_articles">
+            @Html.Raw(Model.Review)
+        </div>
+    }
+</article>
+

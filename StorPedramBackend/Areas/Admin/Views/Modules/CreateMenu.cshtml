@@ -1,0 +1,116 @@
+﻿@model CorService.ViewModels.MainMenu.MainMenuViewModel.CreateMenuViewModel
+@{
+    ViewData["Title"] = "CreateMenu";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">ایجاد منو </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="CreateMenu" enctype="multipart/form-data">
+                    <div class="box-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="ParentMenuTitle" class="control-label"></label>
+                            <input asp-for="ParentMenuTitle" class="form-control" />
+                            <span asp-validation-for="ParentMenuTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="ParentMenuLink" class="control-label"></label>
+                            <input asp-for="ParentMenuLink" dir="ltr" class="form-control" />
+                            <span asp-validation-for="ParentMenuLink" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="ParentSort" class="control-label"></label>
+                            <input asp-for="ParentSort" class="form-control" />
+                            <span asp-validation-for="ParentSort" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <a class="btn btn-info btn-add" style="margin-top:24px">افزودن زیر منو</a>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <ul class="todo-list ui-sortable submenulist">
+                            </ul>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input type="submit" value="ذخیره" class="btn btn-success" />
+                            <a asp-action="MenuList" class="btn btn-danger">انصراف</a>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+
+    <script>
+    var counter = 0;
+    $(".btn-add").click(function () {
+        var title = "<li class='submenu col-md-12'><input type='hidden' value='false' name='SubMenuList[" + counter + "].IsHidden'/>" +
+            "<div class='form-group col-md-2'> <label class='control-label' for='SubMenuList[" + counter + "].SubMenuList[" + counter + "].SubMenuTitle'>عنوان</label>" +
+            "<input class='form-control' type='text'  maxlength='50' name='SubMenuList[" + counter + "].SubMenuTitle'>" +
+            "<span class='text-danger field-validation-valid' data-valmsg-for='SubMenuList[" + counter + "].SubMenuTitle' data-valmsg-replace='true'></span></div>";
+
+        var link = "<div class='form-group col-md-2'><label class='control-label' for='SubMenuList[" + counter + "].SubMenuLink'>لینک</label>" +
+            "<input class='form-control' type='text'    maxlength='250' name='SubMenuList[" + counter + "].SubMenuLink' value=''>" +
+            " <span class='text-danger field-validation-valid' data-valmsg-for='SubMenuList[" + counter + "].SubMenuLink' data-valmsg-replace='true'></span></div>";
+
+        var sort = "<div class='form-group col-md-2'><label class='control-label' for='SubMenuList[" + counter + "].SubMenuSort'>ترتیب </label>" +
+            "<input class='form-control' type='number'  name='SubMenuList[" + counter + "].SubMenuSort' />" +
+            "<span class='text-danger '></span></div>";
+
+        var img = " <div class='form-group col-md-2'><label asp-for='SubMenuList[" + counter + "].Image' class='control-label'>انتخاب عکس</label>" +
+            " <input name='SubMenuList[" + counter + "].Image' type='file' accept='image/*' class='form-control' />" +
+            "<span class='text-danger'></span> </div>";
+
+        var type = " <div class='form-group col-md-2'><label class='control-label' for='SubMenuList[" + counter + "].Type'>نوع منو</label>" +
+            "<select class='form-control' name='SubMenuList[" + counter + "].Type'>" +
+            "<option value='1'>زیر منو اصلی</option>" +
+            "<option value='2'>زیر منو فرعی</option>" +
+            "<option value='3'>عکس اصلی</option>" +
+            "<option value='4'>عکس کوچک اصلی </option>" +
+            "<option value='5'>عکس کوچک</option> </select></div>" +
+            "<div class='tools form-group col-md-2'><i class='fa fa-trash-o btn-remove'></i></div></li>";
+
+        $('.submenulist').append(title + link + sort + img + type);
+
+        $("input[name='SubMenuList[" + counter + "].SubMenuTitle']").rules('add', {
+            maxlength: 50,
+            required: true,
+            messages: {
+                required: "لطفا عنوان را وارد کنید",
+                maxlength:"عنوان نباید بیشتر از 50 باشد"
+            }
+        });
+
+           $("input[name='SubMenuList[" + counter + "].SubMenuLink']").rules('add', {
+            maxlength: 250,
+            required: true,
+            messages: {
+                required: "لطفا عنوان را وارد کنید",
+                maxlength:"عنوان نباید بیشتر از 250 باشد"
+            }
+        });
+        counter++;
+    });
+
+    $('.submenulist').delegate('.btn-remove', 'click', function () {
+        $(this).parents('.submenu').hide();
+        $(this).parents('.submenu').find('input[type=text]').val(1);
+        $(this).parents('.submenu').find('input[type=number]').val(1);
+
+        $(this).parents('.submenu').find('input[type=hidden]').val('true');
+    });
+    </script>
+}
+
+

@@ -1,0 +1,45 @@
+﻿@model List<CorService.ViewModels.MainMenu.MainMenuViewModel.MainMenuShowViewModel>
+
+<div class="c-topmenu_list-main_menu-container js-topmenu_list-main_menu-container">
+    <div class="c-topmenu_list-main_menu-list">
+        @foreach (var item in Model.Where(c => c.ParentId == null))
+        {
+            <a href="@item.Link" class="c-topmenu_list-a c-topmenu_list-a-1 js-topmenu_list-a " data-id="@item.MenuId">@item.MenuTitle</a>
+
+        }
+   
+    </div>
+    <div class="c-topmenu_list-main_menu-content">
+        @foreach (var item in Model.Where(c => c.ParentId != null).GroupBy(c => c.ParentId))
+        {
+            <div class="c-topmenu_sublist js-topmenu_sublist " data-id="@item.Key">
+                <div class="c-topmenu_sublist-menulist">
+                    <div class="c-topmenu_sublist-menulist-header">
+                        <a>
+                            همه دسته‌بندی‌های
+                            @Model.Where(c => c.MenuId == item.Key).FirstOrDefault().MenuTitle
+                        </a>
+                    </div>
+                    <ul>
+                        @foreach (var submenu in item.ToList())
+                        {
+                            if (submenu.Type == 1)
+                            {
+                                <li class="c-topmenu_sublist-li c-topmenu_sublist-main">
+                                    <a href="@submenu.Link">@submenu.MenuTitle</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="c-topmenu_sublist-li c-topmenu_sublist-item">
+                                    <a href="@submenu.Link">@submenu.MenuTitle</a>
+
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>

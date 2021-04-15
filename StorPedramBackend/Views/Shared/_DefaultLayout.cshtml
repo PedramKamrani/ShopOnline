@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewData["Title"] | فروشگاه اینترنتی </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="توضیحات متا" />
+    <meta name="keywords" content="کلمات کلیدی" />
+    <meta http-equiv="content-type" content="text/html;charset:utf-8" />
+    <meta property="og:type" content="Product" />
+    <meta property="og:description" />
+
+    <meta name="robots" content="index" />
+
+    @RenderSection("style", false)
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style_1366.css" media="screen and (min-width:1366px">
+    <link rel="stylesheet" type="text/css" href="/css/style_max_1365.css" media="screen and (max-width:1365px">
+    <link rel="stylesheet" type="text/css" href="/css/mobile_style.css" media="screen and (max-width:720px">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+</head>
+
+<body class="@ViewBag.Bodyclass">
+    <partial name="_header" />
+    <div class="c-cover js-cover"></div>
+    @RenderBody()
+    <partial name="_footer" />
+
+
+
+
+
+
+    <script src="/js/persianumber.js" ></script>
+    <script src="/js/main.js" asp-append-version="true"></script>
+    <script>
+        Open_Dropdown_User();
+        headerSearch()
+        tofaprice()
+    </script>
+    @RenderSection("script", false)
+
+</body>
+</html>

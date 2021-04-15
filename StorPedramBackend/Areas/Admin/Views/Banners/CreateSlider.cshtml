@@ -1,0 +1,64 @@
+﻿@model CorService.ViewModels.Slider.SliderViewModel.CreateSliderViewModel
+@{
+    ViewData["Title"] = "CreateSlider";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">ایجاد اسلایدر جدید </h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CreateSlider" enctype="multipart/form-data">
+                    <div class="box-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Descrption" class="control-label"></label>
+                            <input asp-for="Descrption" class="form-control" />
+                            <span asp-validation-for="Descrption" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="sort" class="control-label"></label>
+                            <input asp-for="sort" class="form-control" />
+                            <span asp-validation-for="sort" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Link" class="control-label"></label>
+                            <input asp-for="Link" dir="ltr" class="form-control" />
+                            <span asp-validation-for="Link" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DesktopImg" class="control-label"></label>
+                            <input asp-for="DesktopImg" type="file" class="form-control" />
+                            <span asp-validation-for="DesktopImg" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="MobileImg" class="control-label"></label>
+                            <input asp-for="MobileImg" type="file" accept="image/*" class="form-control" />
+                            <span asp-validation-for="MobileImg" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="ذخیره" class="btn btn-success" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="SliderList">بازگشت به لیست</a>
+</div>
+
+@section script{
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+}
+
+

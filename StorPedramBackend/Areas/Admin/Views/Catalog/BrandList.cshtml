@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CorService.ViewModels.Brand.BrandForShowAdminViewModel>
+@{
+    ViewData["Title"] = "BrandList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int pagecount = (int)Math.Ceiling((double)ViewBag.cunt / 2);
+    int pagenumber = ViewBag.page;
+}
+
+
+<div class="box-header with-border">
+    <a style="float:left;" asp-action="CreateBrand" class="btn btn-success">ایجاد برند جدید</a>
+</div>
+
+<div id="Brandlist">
+    <table id="list" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FaTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EnTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FaTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnTitle)
+                    </td>
+                    <td>
+                        @Html.Raw((String.IsNullOrEmpty(item.ImageName) ? "" : "<img src='/img/brand/" + item.ImageName + "' class='thumbnail' width='150' />"))
+
+                    </td>
+                    <td>
+                        <a asp-action="EditBrand" asp-route-id="@item.Id" class="btn btn-info">ویرایش</a>
+                        <a asp-controller="Catalog" asp-action="DeleteBrand" asp-route-id="@item.Id" class="btn btn-danger">حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="Paging">
+        <div class="c-pager">
+            <ul class="c-pager_items">
+                @for (int i = 1; i <= pagecount; i++)
+                {
+                    <li>
+                        <a class="c-pager_item @(i==pagenumber ? "is-active" : "")" asp-action="BrandList" asp-route-pagenumber="@i">@(pagecount>1?i:i)</a>
+                        @*<a class="c-pager_item @(i==pagenumber ? "is-active" : "")" asp-action="BrandList" asp-route-pagenumber="@i">@i</a>*@
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+

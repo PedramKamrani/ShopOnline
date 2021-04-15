@@ -1,0 +1,116 @@
+﻿@model IEnumerable<DataLayer.Entites.MainMenu.MainMenu>
+
+@{
+    ViewData["Title"] = "MenuList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content">
+    @if (TempData["res"] != null)
+    {
+        if (TempData["res"].ToString() == "success")
+        {
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close pull-left" data-dismiss="alert" aria-hidden="true">×</button>
+
+                عملیات با موفقیت انجام شد
+            </div>
+        }
+        @if (TempData["res"].ToString() == "faild")
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close pull-left" data-dismiss="alert" aria-hidden="true">×</button>
+
+                خطا در انجام عملیات
+            </div>
+        }
+    }
+
+    <div class="box">
+        <div class="box-header with-border">
+            <a asp-action="CreateMenu" class="btn btn-success">ایجاد منو جدید</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MenuId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MenuTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Link)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sort)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MenuId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MenuTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Link)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sort)
+                        </td>
+
+                        <td>
+                            <a asp-action="EditMenu" asp-route-id="@item.MenuId" class="btn btn-primary">ویرایش</a>
+                            <button type="button" class="btn btn-danger btn-delete" delete data-id="@item.MenuId" data-toggle="modal" data-target="#modal-delete">
+                                حذف
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="modal fade in" id="modal-delete" style="padding-right: 17px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title"> حذف</h4>
+            </div>
+            <div class="modal-body">
+                <p>آیا میخواهید این منو را حذف کنید؟</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">خیر</button>
+                <form asp-action="DeleteMenu">
+                    <input type="hidden" name="id" class="deleteid" />
+
+                    <button type="submit" class="btn btn-primary">بله</button>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+@section script{
+    <script>
+    $(".btn-delete").click(function () {
+        var id = $(this).data("id");
+        $(".deleteid").val(id);
+    })
+    </script>
+}

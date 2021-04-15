@@ -1,0 +1,114 @@
+﻿@model ActivePhoneViewModel 
+@{
+    ViewData["Title"] = "ConfirmPhone";
+    Layout = "~/Views/Shared/_AccountLayout1.cshtml";
+    
+        if (TempData["phone"]!=null && TempData["activecode"] !=null)
+    {
+        TempData["phone"] = TempData["phone"];
+    TempData["activecode"] = TempData["activecode"];
+    }
+    else
+    {
+        Context.Response.Redirect("/");
+    }
+    
+   
+
+}
+
+
+<div class="c-account_box-headline">تایید شماره تلفن همراه</div>
+<div class="c-account_box-content">
+    <form asp-action="ConfirmPhone" class="c-form_account">
+        <input hidden="hidden" asp-for="userid" />
+        <div class="c-form_account-message c-form_phoneconfrim-message">
+            برای شماره همراه @TempData["phone"] کد تایید ارسال گردید
+            <a asp-action="Register" class="c-form_account-link">ویرایش شماره </a>
+        </div>
+        <div class="c-form_account-title">کد تایید را وارد نمایید.</div>
+        <div class="c-form_account-row">
+            <div class="c-form_account-col">
+                <div asp-validation-summary="ModelOnly" style="color:red"></div>
+                <label class="c-form_account-label c-form_account-label_phonecode">
+                    <input asp-for="ActiveCode" class="c-form_account-input" placeholder=" _ _ _ _">
+                    <span asp-validation-for="ActiveCode" class="field-error"></span>
+
+                </label>
+            </div>
+        </div>
+
+        <div class="c-form_account-btn_resend">
+            <span class=resendtimer>دریافت مجدد کد تایید(<span class="counter">۰۳:۰۰</span>)</span>
+            <span id="btn-resendcode" class="c-form_account-link hidden">دریافت مجدد کد تایید</span>
+        </div>
+
+        <div class="c-form_account-row">
+            <div class="c-form_account-col">
+                <button type="submit" class="c-form_account-btn c-form_account-btn_register">تکمیل ثبت نام</button>
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
+<div class="c-account_box-footer">
+    <span>قبلا در دیجی‌کالا ثبت‌نام کرده‌اید؟</span>
+    <a class="c-form_account-link">وارد شویــد </a>
+</div>
+
+@section script{
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/persianumber.js"></script>
+
+    <script>
+        ResendTimer();
+        ResendCode();
+        function ResendCode() {
+            $("#btn-resendcode").click(function () {
+                ResendTimer();
+                $(".resendtimer").removeClass("hidden");
+                $("#btn-resendcode").addClass("hidden");
+
+
+                $.ajax({
+                    type:"POST",
+                    url: "/Account/resendcode"
+                });
+            })
+        }
+
+        function ResendTimer() {
+
+            var minutes = 0;
+            var seconds = 3;
+            var counter = $(".counter");
+
+            interval = setInterval(function () {
+                if (minutes >= 0) {
+
+
+                    counter.html('<span>' + ("00" + minutes).substr(-2) + '</span>:<span>' + ("00" + seconds).substr(-2) + '</span>');
+                    counter.persiaNumber();
+                    seconds--;
+                    if (seconds < 0) {
+                        seconds = 59;
+                        minutes--;
+                    }
+                } else {
+                    clearInterval(interval);
+                    $(".resendtimer").addClass("hidden");
+                    $("#btn-resendcode").removeClass("hidden");
+                }
+            }, 1000);
+        }
+
+    </script>
+
+}
+
+
+

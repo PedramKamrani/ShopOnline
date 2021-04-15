@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200718051735_Slider.cs" />
+    <Compile Remove="Migrations\20200718051735_Slider.Designer.cs" />
+    <Compile Remove="Migrations\20200719131118_Brand-Cat.cs" />
+    <Compile Remove="Migrations\20200719131118_Brand-Cat.Designer.cs" />
+    <Compile Remove="Migrations\20200719131220_Brand-Cat.cs" />
+    <Compile Remove="Migrations\20200719131220_Brand-Cat.Designer.cs" />
+    <Compile Remove="Migrations\20200809061035_ProprtyName-Category.cs" />
+    <Compile Remove="Migrations\20200809061035_ProprtyName-Category.Designer.cs" />
+    <Compile Remove="Migrations\20200809061529_ProprtyName-CategoryUp.cs" />
+    <Compile Remove="Migrations\20200809061529_ProprtyName-CategoryUp.Designer.cs" />
+    <Compile Remove="Migrations\20200809062256_ProprtyName-Cateupp.cs" />
+    <Compile Remove="Migrations\20200809062256_ProprtyName-Cateupp.Designer.cs" />
+    <Compile Remove="Migrations\20200809062815_ProprtyCategory.cs" />
+    <Compile Remove="Migrations\20200809062815_ProprtyCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200809063235_nameprop.cs" />
+    <Compile Remove="Migrations\20200809063235_nameprop.Designer.cs" />
+    <Compile Remove="Migrations\20200809063952_proprtyname.cs" />
+    <Compile Remove="Migrations\20200809063952_proprtyname.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Kavenegar.NetCore" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Quartz" Version="3.1.0" />
+    <PackageReference Include="ZarinpalSandbox" Version="2.0.4" />
+  </ItemGroup>
+
+</Project>

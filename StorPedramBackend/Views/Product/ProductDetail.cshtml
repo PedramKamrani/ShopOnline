@@ -1,0 +1,1086 @@
+﻿@model CorService.ViewModels.Product.ProductDetailUserViewModel
+
+@{
+    ViewData["Title"] = Model.FaTitle;
+    ViewBag.faTitle = Model.FaTitle;
+    ViewData["EnTitle"] = Model.EnTitle;
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+
+}
+
+
+@section style{
+    <link rel="stylesheet" type="text/css" href="/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/remodal.css">
+    <link rel="stylesheet" type="text/css" href="/css/remodal-default-theme.css">
+    <link rel="stylesheet" type="text/css" href="/css/product.css">
+}
+
+<main>
+    <div class="page c-product_page">
+        <div class="container">
+            <nav>
+                <ul class="c-breadcrumb">
+                    <li><a href="#"><span>فروشگاه اینترنتی</span></a></li>
+                    <li><a href="#"><span>@Model.CategoryName</span></a></li>
+                    <li><span>@Model.FaTitle</span></li>
+                </ul>
+            </nav>
+
+            <article class="c-product">
+                <section class="c-product_gallery">
+                    <div class="C-product_gallery-specail_badge js-product_gallery-specail_badge" style="display:block">فروش ویژه</div>
+                    <div class="c-product_gallery-discount js-product_gallery-discount" style="display:none">
+                        <img class="c-product_gallery-discount-img" src="~/img/discountimg.png" />
+                        <div class="c-product_gallery-discount-timer"></div>
+                    </div>
+                    <div class="c-product_headline in-mobile">
+
+                    </div>
+                    <div class="c-gallery">
+                        <div class="c-gallery_item">
+                            <ul class="c-gallery_options">
+                                @*<li>
+                                    <button class="btn-option btn-option_wishlist js-btn-favorite"></button>
+                                    <span class="c-tooltip_short c-tooltip_short-left">افزودن به علاقه‌مندی‌ها</span>
+                                </li>
+                                <li>
+                                    <button class="btn-option btn-option_stats js-open_chart"></button>
+                                    <span class="c-tooltip_short c-tooltip_short-left">نمودار قیمت </span>
+                                </li>*@
+
+                            </ul>
+
+                            <div class="c-gallery_img">
+                                <img src="/img/product/@Model.ImgName" id="productimg" alt="@Model.FaTitle">
+                            </div>
+                        </div>
+                        
+                        <ul class="c-gallery_items">
+                            <li>
+                                <a class="btn" asp-controller="Home" asp-action="Index">بازگشت به صحفه اصلی</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    
+                </section>
+
+                <section class="c-product_info">
+                    <div class="c-product_headline in-desktop">
+
+
+
+                    </div>
+
+                    <div class="c-product_attributes">
+                        <div class="c-product_config">
+                            <div class="c-product_config-feature">
+                                <aside class="c-product_feature">
+                                    <div class="c-product_feature-content">
+                                        <div class="c-product_feature-row">
+                                            <div class="c-product_feature-col">
+                                                <a class="c-product_feature-item c-product_feature-item-1">
+                                                    <span>امکان</span>
+                                                    تحویل سریع
+                                                </a>
+                                            </div>
+                                            <div class="c-product_feature-col">
+                                                <a class="c-product_feature-item c-product_feature-item-2">
+                                                    <span>پشتیبانی</span>
+                                                    همه روزه
+                                                </a>
+                                            </div>
+                                            <div class="c-product_feature-col">
+                                                <a class="c-product_feature-item c-product_feature-item-3">
+                                                    <span>امکان</span>
+                                                    پرداخت در محل
+                                                </a>
+                                            </div>
+                                            <div class="c-product_feature-col">
+                                                <a class="c-product_feature-item c-product_feature-item-4">
+                                                    <span>۷ روز</span>
+                                                    ضمانت بازگشت
+                                                </a>
+                                            </div>
+                                            <div class="c-product_feature-col">
+                                                <a class="c-product_feature-item c-product_feature-item-5">
+                                                    <span>ضمانت</span>
+                                                    اصل بودن کالا
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
+                                          
+                                        
+
+                                    </div>
+                                </aside>
+                            </div>
+
+
+                        </div>
+
+                        <div class="c-product_buy">
+                            <div class="c-product_seller-info">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @await Component.InvokeAsync("OrderViewComponnet", User.FindFirst("userid").Value)
+                                    <div class="c-product_seller-row">
+                                        <a asp-controller="Order" asp-action="Index" asp-route-id="@Model.ProductId" class="btn-add_cart js-add-to-cart">
+                                            <span class="btn-add_cart-text">پرداخت سبــد خریــد</span>
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="c-product_seller-row">
+                                        <a asp-controller="Account" asp-action="Login" class="btn-add_cart js-add-to-cart">
+                                            <span class="btn-add_cart-text">درصورت تمایل وارد حساب خود شوید و سبد خودراببینید</span>
+                                        </a>
+                                    </div>
+
+                                }
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c-product_seller-row"style="margin-bottom:80px">
+                        <a asp-controller="Order" asp-action="AddToCart" asp-route-id="@Model.ProductId" class="btn-add_cart js-add-to-cart">
+                            <span class="btn-add_cart-text">افــزودن به سبــد خریــد</span>
+                        </a>
+                    </div>
+
+
+                </section>
+            </article>
+
+            @*<div class="c-product_feature-body">
+                <aside class="c-product_feature">
+                    <div class="c-product_feature-content">
+                        <div class="c-product_feature-row">
+
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="c-tabs js-box_tabs" id="tabs">
+                <ul class="c-box_tabs js-box_tabs in-desktop">
+                    <li class="c-box_tabs-tab js-box_tabs-tab is-active" data-tab-name="review">
+                        <a data-tab-name="desc">نقد و بررسی</a>
+                    </li>
+                    <li class="c-box_tabs-tab js-box_tabs-tab" data-tab-name="prop">
+                        <a data-tab-name="prop">مشخصات</a>
+                    </li>
+
+                    <li class="c-box_tabs-tab comment-tab  js-box_tabs-tab" data-tab-name="comments">
+                        <a data-tab-name="comments">نظرات کاربران</a>
+                    </li>
+
+                    <li class="c-box_tabs-tab c-faq js-box_tabs-tab" data-tab-name="faq">
+                        <a data-tab-name="question">پرسش و پاسخ</a>
+                    </li>
+                </ul>
+
+                <div class="c-tabs_content js-tabs_content">
+                    <li class="c-box_tabs-tab in-mobile  js-box_tabs-tab" data-tab-name="review">
+                        <a data-tab-name="desc">نقد و بررسی</a>
+                    </li>
+                    <div class="is-active" data-tab-content="review">
+
+                        @await Component.InvokeAsync("ReviewProductComponent", Model.ProductId)
+                    </div>
+
+                    <li class="c-box_tabs-tab in-mobile js-box_tabs-tab" data-tab-name="prop">
+                        <a data-tab-name="prop">مشخصات</a>
+                    </li>
+                    <div data-tab-content="prop">
+
+                        @await Component.InvokeAsync("ProductPropertyComponent", Model.ProductId)
+
+                    </div>
+
+                    <li class="c-box_tabs-tab is-active comment-tab js-box_tabs-tab in-mobile" data-tab-name="comments">
+                        <a data-tab-name="comments">نظرات کاربران</a>
+                    </li>
+                    <div id="comment" data-tab-content="comments">
+
+                    </div>
+
+                    <li class="c-box_tabs-tab c-faq js-box_tabs-tab in-mobile" data-tab-name="faq">
+                        <a data-tab-name="question">پرسش و پاسخ</a>
+                    </li>
+                    <div data-tab-content="faq">
+                        <h2 class="c-faq_tab-headline">
+                            پرسش و پاسخ
+                            <span>پرسش خود را در مورد محصول مطرح نمایید</span>
+                        </h2>
+                        <div id="faqlist"></div>
+                    </div>
+                </div>
+
+
+            </div>*@
+
+        </div>
+    </div>
+</main>
+
+<div class="remodal c-remodal_load" data-remodal-id="load">
+
+</div>
+
+
+<div class="remodal c-remodal_login" data-remodal-id="login">
+    <button data-remodal-action="close" class="remodal-close"></button>
+
+</div>
+
+
+
+
+<div class="remodal c-remodal_price_chart" data-remodal-id="chart">
+    <button data-remodal-action="close" class="remodal-close"></button>
+
+    <div class="c-remodal_price_chart-main">
+        <div class="c-remodal_price_chart-aside">
+            <div class="c-remodal_price_chart-aside_title">نمودار قیمت فروش</div>
+        </div>
+        <div class="c-remodal_price_chart-content">
+            <div id="productpricechart"></div>
+            <div class="c-remodal_price_chart-content_inventory">
+                <div class="c-am_chart-inventory">
+                    <div class="c-am_chart-inventory_col">
+                        <span class="c-am_chart-inventory_col-line c-am_chart-inventory_col-avialable"></span>
+                        <span class="c-am_chart-inventory_col-circle c-am_chart-inventory_col-avialable"></span>
+                        <label>موجود</label>
+                    </div>
+                    <div class="c-am_chart-inventory_col">
+                        <span class="c-am_chart-inventory_col-line c-am_chart-inventory_col-noavialable"></span>
+                        <span class="c-am_chart-inventory_col-circle c-am_chart-inventory_col-noavialable"></span>
+                        <label>ناموجود</label>
+                    </div>
+                    <div class="c-am_chart-inventory_col">
+                        <span class="c-am_chart-inventory_col-line c-am_chart-inventory_col-nodiscount"></span>
+                        <label>قیمت بدون تخفیف</label>
+                    </div>
+                </div>
+                <div class="c-am_chart-time">
+                    <label class="c-am_chart-time_selector">
+                        <input type="radio" value="59" name="amcharttime" class="js-am_chart-time_selector" checked />
+                        <span class="c-am_chart-time_check-span">بازه یک ماهه</span>
+                    </label>
+                    <div class="c-am_chart-time_devider"></div>
+                    <label class="c-am_chart-time_selector">
+                        <input type="radio" value="0" name="amcharttime" class="js-am_chart-time_selector" />
+                        <span class="c-am_chart-time_check-span">بازه سه ماهه</span>
+                    </label>
+                </div>
+            </div>
+            <div class="c-chart_variant">
+                <label class="c-chart_variant-label">انتخاب رنگ</label>
+                <ul class="js-chart_variant-list c-chart-varient_list">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section script{
+    <script src="/js/remodal.js"></script>
+    <script src="/js/jquery.elevateZoom-3.0.8.min.js"></script>
+    <script src="/js/swiper.min.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/chart/core.js"></script>
+    <script src="~/js/chart/charts.js"></script>
+    <script src="~/js/chart/animated.js"></script>
+
+
+    <script>
+
+        $('.js-open_chart').click(function () {
+            chart()
+        });
+        var pricechartdata =null
+        function chart() {
+            if (pricechartdata == null) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Product/GetProductPrice',
+                    data: { id: '@Model.ProductId' },
+                    success: function (data) {
+                        pricechartdata = data;
+                        createchart(data);
+                    }
+                })
+            }
+            else {
+                openremodalchart();
+            }
+
+
+
+            function createchart(data) {
+                for (var i = 0; i < data.series.length; i++) {
+                    $('.js-chart_variant-list').append(
+                        '<li>'
+                        +'<label class="c-color">'
+                            +'<input type="radio" value='+i+' class="js-amchart_color-selector"'+(i==0 ? 'checked' : '')+'  name="c-amchart_color-selector">'
+                            +'<span class="c-color_check">'+data.series[i].color+'</span>'
+                        +'</label>'
+                   +'</li>')
+                }
+
+                var day = 59,
+                    currentseries = data.series[0].productPrices;
+
+                am4core.useTheme(am4themes_animated);
+                var chart = am4core.create("productpricechart", am4charts.XYChart);
+                chart.rtl = true;
+                chart.zoomOutButton.disabled = true;
+                chart.data = createdatachart(currentseries);
+                function createdatachart(values) {
+                    var res = [];
+                    for (var i = day; i < values.length; i++) {
+                        res.push({
+                            date:ToFadigit(values[i].date),
+                            price:values[i].price,
+                            discountprice:values[i].discountPrice,
+                            discountpercent:values[i].discountPercent,
+                            isAvialable:values[i].isAvailable,
+                            seller:values[i].seller,
+                            guarantee:values[i].guarantee,
+                            linecolor:values[i].isAvailable ? "rgba(0,191,214,1)" :"rgba(214,214,214,1)",
+
+                        });
+                    }
+
+                    return res;
+                }
+                //categoryAxis
+                var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+                categoryAxis.dataFields.category = "date";
+                categoryAxis.renderer.minGridDistance = 250;
+                categoryAxis.renderer.labels.template.fill=am4core.color('rgba(155,155,155,1)');
+                categoryAxis.renderer.labels.template.dx = 10;
+                categoryAxis.renderer.grid.template.disabled = true;
+                categoryAxis.tooltip.background.fill = am4core.color('rgba(241,241,241,1)');
+                categoryAxis.tooltip.background.strokeWidth = 0;
+                categoryAxis.tooltip.dy = -10;
+                categoryAxis.tooltip.label.fill = am4core.color('#000');
+                categoryAxis.tooltip.background.cornerRadius = 50;
+                categoryAxis.fontSize = 10;
+                //end categoryAxis
+
+                //cursor
+                chart.cursor = new am4charts.XYCursor();
+                chart.cursor.xAxis = categoryAxis;
+                chart.cursor.fullWidthLineX = true;
+                chart.cursor.lineX.fill=am4core.color('rgba(191,191,191,1)');
+                chart.cursor.lineX.fillOpacity = 0.2;
+                chart.cursor.lineX.strokeWidth = 0,
+                chart.cursor.lineY.disabled = true;
+                chart.cursor.behavior = 'none';
+                //end cursor
+
+
+                //valueaxis
+                 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                valueAxis.fontSize = 10;
+                valueAxis.renderer.minGridDistance = 90;
+                valueAxis.renderer.labels.template.fill=am4core.color('rgba(155,155,155,1)')
+                valueAxis.renderer.labels.template.dx = -10;
+                valueAxis.renderer.labels.template.dy = -10;
+                valueAxis.renderer.inside = true;
+                valueAxis.cursorTooltipEnabled = false;
+                valueAxis.extraMax = 0.1;
+
+                valueAxis.renderer.labels.template.adapter.add('text', function (label) {
+                    if (typeof label == 'undefined')
+                        return '';
+                    return label === '0' ? '۰' : ToFadigit(currency(label)) + " تومان";
+                })
+                //end valueaxis
+
+                //series
+                var series = chart.series.push(new am4charts.LineSeries());
+                series.dataFields.valueY = "discountprice";
+                series.dataFields.categoryX = "date";
+                   series.strokeWidth = 4;
+
+                series.tooltip.pointerOrientation = "vertical";
+                series.tooltip.background.cornerRadius = 5;
+                series.tooltip.autoTextColor = false;
+                series.tooltip.getFillFromObject = false;
+                series.tooltip.label.fill = am4core.color("#000");
+                series.tooltip.background.fill = am4core.color("rgba(255, 255, 255, 1)");
+                series.tooltip.background.stroke = am4core.color('rgba(184, 184, 184, 1)');
+                series.tooltip.background.fillOpacity = 0.9;
+                series.tooltip.label.padding(2, 2, 2, 2);
+                series.tooltip.background.filters.clear();
+
+                series.propertyFields.stroke = "linecolor";
+                series.zIndex = 10;
+
+                var graySeries = chart.series.push(new am4charts.LineSeries());
+                graySeries.dataFields.valueY = "price";
+                graySeries.dataFields.categoryX = "date";
+                graySeries.strokeWidth = 4;
+
+                graySeries.stroke = am4core.color('rgba(216, 216, 216, 1)');
+                graySeries.fill = am4core.color('rgba(216, 216, 216, 1)');
+                graySeries.strokeDasharray = 5;
+                graySeries.zIndex = 5;
+
+                var bullet = series.bullets.push(new am4charts.CircleBullet());
+                bullet.circle.propertyFields.stroke = "linecolor";
+                bullet.circle.strokeWidth = 4;
+                 bullet.circle.radius=2
+
+                series.adapter.add('tooltipHTML', function (a, b) {
+                    var index = b.tooltipDataItem.index,
+                        temp = chart.data[index];
+                    return CreateTooltip({
+                        price: temp.price ? ToFadigit(currency(temp.price)) : undefined,
+                        discountprice: temp.discountprice ? ToFadigit(currency(temp.discountprice)) : undefined,
+                        discountpercent: temp.discountpercent ? ToFadigit(temp.discountpercent) : undefined,
+                        hasdiscount : temp.discountpercent > 0 ? true : false,
+                        seller: temp.seller,
+                        guarantee: temp.guarantee,
+                        isAvialable:temp.isAvialable
+                    });
+                });
+
+                function CreateTooltip(values) {
+
+
+                    var template = tooltiptemplate(values.hasdiscount, values.isAvialable);
+
+                    var keys = Object.keys(values);
+                    for (var i = 0; i < keys.length; i++) {
+                        template = template.replace(new RegExp('{{ *' + keys[i] + ' *}}'), values[keys[i]]);
+                    }
+                    return template
+                }
+
+
+                function tooltiptemplate(hasDiscount, isAvialable) {
+                    if (isAvialable)
+                            return '<div class="c-chart-tooltip">'
+                        + '<div class="c-chart-tooltip_row c-chart-tooltip_row-seller">'
+                        + '<p>فروشنده: {{ seller }}</p>'
+                        + '</div>'
+                        + '<div class="c-chart-tooltip_row c-chart-tooltip_row-warranty">'
+                        + '<p>گارانتی {{ guarantee }}</p>'
+                        + '</div>'
+                        + '<div class="c-chart-tooltip_row c-chart-tooltip_row-price">'
+                        + '<span class="c-chart-tooltip_price-title">کمترین قیمت:</span>'
+                        + '<div  class="c-chart-tooltip_col">'
+                        + '<div class="c-chart-tooltip_row c-chart-tooltip_row-discount">'
+                        + (hasDiscount ?
+                            '<span class="c-chart-tooltip_price-discount">{{ price }}</span>'
+                        + '<span class="c-chart-tooltip_price-discount-value">{{ discountpercent }}٪<span></div>'
+                         + '<div class="c-chart-tooltip_row c-chart-tooltip_row-left">'
+                        + '<span class="c-chart-tooltip_price">{{ discountprice }}</span>'
+                        + '<span class="c-chart-tooltip_price-unit">\u0020تومان\u0020</span>'
+                        + '</div>'
+                        : '</div>'
+                        + '<div class="c-chart-tooltip_row c-chart-tooltip_row-left">'
+                        + '<span class="c-chart-tooltip_price">{{ price }}</span>'
+                        + '<span class="c-chart-tooltip_price-unit">\u0020تومان\u0020</span>'
+                        + '</div>')
+
+                        + '</div>'
+                        + '</div>'
+                        + '</div>';
+                else
+                    return '<div class="c-chart-tooltip">'
+                        + '<div class="c-chart-tooltip_row c-chart-tooltip_row-price">'
+                        + '<span class="c-chart-tooltip_price-title no-avilable">کمترین قیمت:</span>'
+                        + '<span >ناموجود</div>'
+                        + '</div>'
+                        + '</div>';
+                }
+
+                $('.js-amchart_color-selector').change(function () {
+                    var val = $(this).val();
+                    currentseries = data.series[val].productPrices;
+                    chart.data = createdatachart(currentseries);
+                })
+
+                $('.js-am_chart-time_selector').change(function () {
+                    day = $(this).val();
+                    chart.data = createdatachart(currentseries);
+                })
+
+                var charprice = $('[data-remodal-id=chart]').remodal();
+                charprice.open();
+            }
+
+
+
+        }
+
+        function openremodalchart() {
+            if (pricechartdata.status) {
+                  var charprice = $('[data-remodal-id=chart]').remodal();
+                charprice.open();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $('.js-product_buy-btn_back').click(function () {
+            $(this).parent().hide();
+            $('#variantdetial').show();
+        });
+
+        $('.js-show_seller-info').click(function () {
+            $('#variantdetial').hide();
+            $('#seller_info').show();
+        });
+
+           $('.js-show_shipment-info').click(function () {
+            $('#variantdetial').hide();
+            $('#shipment_info').show();
+        });
+
+
+        FAQ();
+           var login_modal = $('[data-remodal-id=login]').remodal();
+        function FAQ() {
+            SubmitQuestionForm();
+
+
+            CheckLogin().done(function (data) {
+                if (data == false) {
+                    $("#agreement_check").attr("disabled", "disabled");
+                    $("#agreement_check").addClass("disabled");
+                    $("#btn-addquestion").attr("disabled", "disabled");
+                    $("#btn-addquestion").addClass("disabled");
+
+                    $("#questiontext").attr("disabled", "disabled");
+                    $("#questiontext").addClass("disabled");
+                    QusetionClick();
+                }
+            });
+
+            function QusetionClick() {
+                $("#addquestionform").click(function () {
+                    login_modal.open();
+                });
+            };
+
+
+
+            function SubmitQuestionForm() {
+                $("#addquestionform").submit(function (e) {
+                    e.preventDefault();
+                    var form = $(this);
+                    var url = form.attr('action');
+
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: form.serialize(),
+                        success: function () {
+
+                        }
+                    })
+
+                })
+            };
+
+
+
+            $('#faqlist').delegate('.btn-add-answer', 'click', function () {
+                var that = $(this);
+                console.log('ddd')
+                CheckLogin().done(function (data) {
+                    if (data == false) {
+                        login_modal.open();
+                    } else if (data == true) {
+                        var questionid = ToEndigit(that.data('questionid'));
+                        if ($('#addanswercontent').length) {
+                            $("#addanswercontent").detach().insertAfter(that.closest('li'));
+                            $("#questionid").val(questionid);
+                        }
+                        else {
+                            $.ajax({
+                                url: '/Product/AddAnswer',
+                                success: function (data) {
+                                    $(data).insertAfter(that.closest('li'));
+                                    $("#questionid").val(questionid)
+                                }
+                            })
+                        }
+                    }
+
+
+                });
+            });
+
+            $('#faqlist').delegate("#addanswerform", 'submit', function (e) {
+                e.preventDefault();
+                var form = $(this);
+                var url = form.attr('action');
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: form.serialize(),
+                    success: function () {
+
+                    }
+                })
+            });
+
+
+
+             $('#faqlist').delegate('.js-btn-like', 'click', function () {
+                 var that = $(this);
+                CheckLogin().done(function (data) {
+                    if (data == false) {
+                        login_modal.open();
+                    } else if (data == true) {
+                        var type = that.data('type');
+                        var answerid =ToEndigit(that.data('answerid'));
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "/Profile/ChangeAnswerLike",
+                            data: { answerid: answerid, type: type },
+                            success: function (data) {
+                                var parent = that.closest('.c-comments_likes');
+                                parent.find('.js-like').attr('data-counter', ToFadigit(data.likes));
+                                parent.find('.js-dislike').attr('data-counter', ToFadigit(data.dislikes));
+                            }
+                        });
+
+
+                    }
+
+
+                });
+            });
+
+        };
+
+        $(function () {
+
+            @*$.ajax({
+                type: 'POST',
+                url: '/profile/CheckFavoriteisExist',
+                data: { productid:@Model.Item1.ProductId},
+                success: function (data) {
+
+                    if (data) {
+                        $('.js-btn-favorite').addClass('is-active');
+                    }
+                }
+            });*@
+
+
+            $('#loginform').submit(function (e) {
+                e.preventDefault();
+
+
+
+                var form = $(this);
+                if (!form.valid()) {
+                    return;
+                }
+                var url = form.attr('action');
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(),
+                    success: function (data) {
+                        if (data == true) {
+                            location.reload();
+                        }
+
+                        else {
+                            $('#login_message').text(data);
+                        }
+                    }
+                })
+
+            });
+
+
+            $('.js-btn-favorite').click(function () {
+
+                $.ajax({
+                    url: '/users/CheckUserAuthenticated',
+                    success: function(data){
+                        if (data) {
+                              ChangeFavoriteState()
+                        }
+                        else {
+                            login_modal.open();
+                        }
+                    }
+                })
+
+            });
+
+
+            function ChangeFavoriteState() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Profile/ChangeFavoriteState',
+                    data: { productid:@Model.ProductId},
+                    success: function (data) {
+                        console.log(data)
+                        if (data==1) {
+                            $('.js-btn-favorite').removeClass('is-active');
+                        }
+                        else if(data==2){
+                            $('.js-btn-favorite').addClass('is-active');
+                        }
+                    },
+                    error: function () {
+
+                    }
+
+                })
+            }
+
+        });
+
+
+
+
+
+
+        $(function () {
+            var gallery = $('[data-remodal-id=gallery]').remodal();
+            var galleryThumbs = new Swiper('.gallery-thumbs', {
+                direction: 'vertical',
+                slidesPerView: 'auto',
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+            });
+            var galleryTop = new Swiper('.gallery-top', {
+                effect: 'fade',
+                pagination: {
+                    el: '.c-slider_dots',
+                    dynamicBullets: true,
+                    type: 'bullets',
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: '.js-swiper_btn-next',
+                    prevEl: '.js-swiper_btn-prev',
+                },
+                thumbs: {
+                    swiper: galleryThumbs
+                }
+            });
+
+            $('.js-open_gallery').click(function () {
+                var index = parseInt($(this).attr("data-slide-index"));
+                gallery.open();
+                galleryThumbs.update();
+                galleryTop.update();
+                galleryTop.slideTo(index - 1);
+
+
+            });
+        })
+
+        $(function () {
+            $("#productimg").elevateZoom({
+                zoomWindowPosition: 10,
+                zoomWindowWidth: 523,
+                zoomWindowHeight: 583,
+                borderSize: 1,
+                cursor: "crosshair",
+                lensColour: "transparent",
+                lensBorderColour: "#ef5661",
+                lensBorderSize: 2.5,
+                easing: true,
+                zoomWindowFadeIn: 200,
+                zoomWindowFadeOut: 200
+            });
+        })
+
+        //$(function () {
+
+
+        //    var myChart = Highcharts.chart('productpricechart', {
+        //        chart: {
+        //            type: 'line',
+        //            height: 575,
+        //            marginTop: 20,
+        //            marginRight: 20,
+        //            marginLight: 10
+        //        },
+        //        credits: {
+        //            enabled: false
+        //        },
+        //        title: {
+        //            text: ''
+        //        },
+        //        xAxis: {
+        //            title: {
+        //                text: null
+        //            },
+
+        //            labels: {
+        //                enabled: true,
+        //                style: {
+        //                    fontSize: "12px",
+        //                    fontFamily: "IRANYekan",
+        //                    color: "#979797"
+
+        //                },
+        //                formatter: function () {
+        //                    return ToFadigit(this.value);
+        //                }
+        //            }
+        //        },
+        //        yAxis: {
+        //            title: {
+        //                text: 'قیمت بدون تخفیف (هزار تومان)',
+        //                style: {
+        //                    fontSize: "14px",
+        //                    fontFamily: "IRANYekan",
+        //                    color: "#777777",
+        //                }
+        //            },
+        //            gridLineDashStyle: "Dot",
+        //            labels: {
+
+
+        //                style: {
+        //                    fontSize: "16px",
+        //                    fontFamily: "IRANYekan",
+        //                    color: "#4c4c4c",
+        //                },
+        //                formatter: function () {
+        //                    return ToFadigit(currency(this.value));
+        //                }
+        //            },
+        //        },
+        //        tooltip: {
+        //            rtl: true,
+        //            style: {
+        //                fontFamily: "IRANYekan",
+        //                padding: '20px'
+        //            },
+        //            backgroundColor: "#fcfeff",
+        //            borderRadius: 2,
+        //            borderColor: "#e6e7e8",
+        //            borderWidth: 1,
+        //            useHTML: true,
+        //            formatter: function () {
+        //                return '<div class="c-remodal_price-chart_tooltip">' +
+        //                    '<p>' + ToFadigit("1397/10/5") + '</p>' +
+        //                    '<p>فروش توسط دیجی‌کالا</p>' +
+        //                    '<p>گارانتی هما تلکام</p>' +
+        //                    '<hr/>' +
+        //                    '<p>' + ToFadigit(currency("15000")) + ' تومان</p></div>'
+        //            }
+
+        //        },
+        //        legend: {
+        //            backgroundColor: "#f5f6f8",
+        //            align: "right",
+        //            verticalAlign: "bottom",
+        //            rtl: true,
+        //            margin: 30,
+        //            width: 760,
+        //            itemMarginBottom: 10,
+        //            itemStyle: {
+        //                fontSize: "12px",
+        //                fontFamily: "IRANYekan",
+        //                color: "#777"
+        //            }
+        //        },
+
+        //        plotOptions: {
+        //            line: {
+        //                marker: {
+        //                    symbol: "circle",
+        //                    fillColor: "#fff",
+        //                    lineWidth: 2,
+        //                    lineColor: null,
+        //                    states: {
+        //                        hover: {
+        //                            enabled: false
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        },
+
+        //        series: [{
+        //            name: 'دیجی کالا | نقره‌ایی | گارنتی هما تلکام',
+        //            data: [[25, 2300], [27, 2500], [29, 2550], [32, 2700], [36, 2800], [37, 3000]]
+        //        }, {
+        //            name: 'دیجی کالا | نقره‌ایی | گارنتی هما تلکام',
+        //            data: [[25, 2300], [28, 2500], [29, 2650], [35, 2670], [36, 2800], [39, 2950]]
+        //        }]
+        //    });
+        //});
+
+
+        $(function () {
+
+
+            $('.js-open_share').click(function () {
+                var add_compare = $('[data-remodal-id=share]').remodal();
+                add_compare.open();
+            });
+
+            $('.js-open_price').click(function () {
+                var add_compare = $('[data-remodal-id=price]').remodal();
+                add_compare.open();
+            });
+
+
+            $('.js-product_params-more-btn').click(function () {
+                $('.js-product_params-more').toggleClass("is-active");
+                if ($('.js-product_params-more').hasClass('is-active')) {
+                    $(this).html("بستن").parent().attr('data-sign', "-")
+                }
+                else {
+                    $(this).html("موارد بیشتر").parent().attr('data-sign', "+")
+                }
+            })
+
+            $(".js-more_suppliers-btn").click(function () {
+                $(".js-suppliers_more-item").addClass("is-active");
+                $(".js-table_suppliers-more").hide();
+                $(".js-table_suppliers-less").show();
+            })
+
+            $(".js-less_suppliers-btn").click(function () {
+                $(".js-suppliers_more-item").removeClass("is-active");
+                $(".js-table_suppliers-more").show();
+                $(".js-table_suppliers-less").hide();
+            })
+
+            $(".js-mask").each(function () {
+                var that = $(this);
+                var text = that.find(".js-mask_text");
+                var btn = that.find(".js-mask_btn");
+                var maxheight = 0;
+
+                try {
+                    maxheight = parseInt(text.css("max-height").replace("px", ""));
+                }
+                catch{
+                    maxheight = 0;
+                }
+
+                btn.on("click", function (e) {
+                    e.preventDefault();
+                    text.toggleClass("is-active");
+                    if (text.hasClass("is-active")) {
+                        text.css("max-height", "unset");
+                        $(this).text("بستن")
+                    }
+                    else {
+                        text.css("max-height", maxheight);
+                        $(this).text("ادامه مطلب")
+                    }
+                });
+            })
+
+            $(".js-tabs_content-desc_article-button").on("click", function () {
+                var that = $(this),
+                    article = that.closest(".js-tabs_content-desc_article");
+                if (article.hasClass("is-active")) {
+                    article.removeClass("is-active")
+                }
+                else {
+                    article.addClass("is-active")
+                }
+            })
+
+            $(window).scroll(function () {
+                var top = $(window).scrollTop(),
+                    tabs = $(".js-box_tabs"),
+                    tabstop = tabs.offset().top - 36,
+                    content_height = tabs.height();
+
+                if (top >= tabstop && top <= tabstop + content_height) {
+
+                    tabs.addClass("is-fixed");
+                }
+                else {
+                    tabs.removeClass('is-fixed');
+                }
+
+            })
+        })
+
+        $(function () {
+            var remodalload = $('[data-remodal-id=load]').remodal();
+            $('.js-box_tabs-tab').click(function () {
+                scrolltotab()
+                var tabname = $(this).data("tab-name");
+                $(".js-box_tabs-tab").removeClass('is-active');
+                $('.js-tabs_content > div').removeClass('is-active');
+                $(this).addClass('is-active');
+                $(".js-tabs_content > div[data-tab-content=" + tabname + "]").addClass('is-active');
+            });
+
+            $('.c-faq').click(function () {
+                if ($(this).hasClass("c-faq")) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Product/FAQ/",
+                    data: { productid:@Model.ProductId, pagenumber:1, sort:1, faqcount:0 },
+                    beforeSend: function () {
+                        remodalload.open();
+                    },
+                    success: function (res) {
+                        $('#faqlist').html(res);
+                        $("#faqcontent").html(ToFadigit($("#faqcontent").html()))
+                       $('.c-faq').removeClass("c-faq")
+                        setTimeout(function () { remodalload.close(); },500)
+
+                    }
+                })
+                    }
+            })
+
+
+     $(".comment-tab").click(function () {
+            $('#comment').load("/Product/CommentTab",  {productid:@Model.ProductId,fatitle:'@Model.FaTitle'})
+        })
+        })
+
+
+
+    </script>
+
+
+}
+
